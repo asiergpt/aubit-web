@@ -174,7 +174,8 @@
     }
 
     .logo-img {
-      mix-blend-mode: screen;
+      height: 40px;
+      width: auto;
     }
 
     .nav-links {
@@ -540,6 +541,34 @@
       width: 100%;
       height: 200px;
       object-fit: cover;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .servicio-photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(13,13,13,0.2), rgba(13,13,13,0.65));
+    }
+
+    .servicio-photo-badge {
+      position: absolute;
+      bottom: 12px;
+      left: 16px;
+      background: rgba(201,168,76,0.9);
+      color: var(--dark);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 100px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      z-index: 1;
     }
 
     .servicio-card--photo .servicio-photo-body {
@@ -548,6 +577,17 @@
       flex-direction: column;
       flex: 1;
     }
+
+    .servicio-card--photo > .servicio-icon,
+    .servicio-card--photo > .servicio-title,
+    .servicio-card--photo > .servicio-desc,
+    .servicio-card--photo > .servicio-benefits,
+    .servicio-card--photo > .servicio-btn {
+      margin-left: 32px;
+      margin-right: 32px;
+    }
+    .servicio-card--photo > .servicio-icon { margin-top: 24px; }
+    .servicio-card--photo > .servicio-btn { margin-bottom: 28px; width: calc(100% - 64px); }
 
     .servicio-card--photo .servicio-badge {
       position: absolute;
@@ -1625,7 +1665,7 @@
   <nav id="navbar">
     <div class="nav-inner">
       <a href="#inicio" class="nav-logo">
-        <img src="data:image/jpeg;base64,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" alt="AuBit" class="logo-img" style="height:44px;" />
+        <img src="/img/logo.jpg" alt="AuBit" class="logo-img" style="height:44px;" />
       </a>
       <ul class="nav-links">
         <li><a href="#que-es">Qué es AUBIT</a></li>
@@ -1673,20 +1713,6 @@
           <div class="hero-btns">
             <a href="#que-es" class="btn btn-gold">Descubre cómo <i class="fas fa-arrow-right"></i></a>
             <a href="#servicios" class="btn btn-outline">Explorar servicios</a>
-          </div>
-          <div class="hero-stats">
-            <div class="hero-stat">
-              <div class="hero-stat-number">500+</div>
-              <div class="hero-stat-label">Clientes</div>
-            </div>
-            <div class="hero-stat">
-              <div class="hero-stat-number">25+</div>
-              <div class="hero-stat-label">Años experiencia</div>
-            </div>
-            <div class="hero-stat">
-              <div class="hero-stat-number">100%</div>
-              <div class="hero-stat-label">Autocustodia</div>
-            </div>
           </div>
         </div>
       </div>
@@ -1739,79 +1765,89 @@
       </div>
       <div class="servicios-grid">
         <!-- Oro -->
-        <div class="servicio-card reveal">
-          <div class="servicio-icon" style="background:rgba(201,168,76,0.1);color:var(--gold);">
-            <i class="fas fa-coins"></i>
+        <div class="servicio-card servicio-card--photo reveal">
+          <div class="servicio-photo" style="background-image:url('/img/oro.jpg');">
+            <div class="servicio-photo-overlay"></div>
+            <div class="servicio-photo-badge"><i class="fas fa-coins"></i> Oro</div>
           </div>
-          <h3>Compra de Oro 🪙</h3>
-          <p>Lingotes y monedas de oro de inversión con certificación y pureza garantizada. Desde 1 gramo hasta lingotes de 1 kg.</p>
+          <div class="servicio-icon" style="background:rgba(201,168,76,0.1);color:var(--gold);">🪙</div>
+          <div class="servicio-title">Compra de Oro</div>
+          <div class="servicio-desc">Lingotes y monedas de oro de inversión con certificación y pureza garantizada. Desde 1 gramo hasta lingotes de 1 kg.</div>
           <ul class="servicio-benefits">
-            <li>Oro de inversión (999,9 milésimas)</li>
-            <li>Exento de IVA</li>
-            <li>Entrega asegurada</li>
-            <li>Certificado de autenticidad</li>
+            <li><i class="fas fa-check-circle"></i> Oro de inversión (999,9 milésimas)</li>
+            <li><i class="fas fa-check-circle"></i> Exento de IVA</li>
+            <li><i class="fas fa-check-circle"></i> Entrega asegurada</li>
+            <li><i class="fas fa-check-circle"></i> Certificado de autenticidad</li>
           </ul>
-          <a href="#contacto" class="servicio-btn" onclick="scrollToContact()">Solicitar información <i class="fas fa-arrow-right"></i></a>
+          <button class="servicio-btn" onclick="scrollToContact()">Solicitar información <i class="fas fa-arrow-right"></i></button>
         </div>
         <!-- Plata -->
-        <div class="servicio-card reveal">
-          <div class="servicio-icon" style="background:rgba(170,170,170,0.1);color:var(--gray-light);">
-            <i class="fas fa-coins"></i>
+        <div class="servicio-card servicio-card--photo reveal">
+          <div class="servicio-photo" style="background-image:url('/img/plata.jpg');">
+            <div class="servicio-photo-overlay"></div>
+            <div class="servicio-photo-badge"><i class="fas fa-coins"></i> Plata</div>
           </div>
-          <h3>Compra de Plata 🥈</h3>
-          <p>Monedas y lingotes de plata de inversión. El metal precioso más accesible con mayor potencial de revalorización.</p>
+          <div class="servicio-icon" style="background:rgba(170,170,170,0.1);color:var(--gray-light);">🥈</div>
+          <div class="servicio-title">Compra de Plata</div>
+          <div class="servicio-desc">Monedas y lingotes de plata de inversión. El metal precioso más accesible con mayor potencial de revalorización.</div>
           <ul class="servicio-benefits">
-            <li>Plata de inversión (999 milésimas)</li>
-            <li>Monedas y lingotes</li>
-            <li>Almacenamiento opcional</li>
-            <li>Liquidez garantizada</li>
+            <li><i class="fas fa-check-circle"></i> Plata de inversión (999 milésimas)</li>
+            <li><i class="fas fa-check-circle"></i> Monedas y lingotes</li>
+            <li><i class="fas fa-check-circle"></i> Almacenamiento opcional</li>
+            <li><i class="fas fa-check-circle"></i> Liquidez garantizada</li>
           </ul>
-          <a href="#contacto" class="servicio-btn" onclick="scrollToContact()">Solicitar información <i class="fas fa-arrow-right"></i></a>
+          <button class="servicio-btn" onclick="scrollToContact()">Solicitar información <i class="fas fa-arrow-right"></i></button>
         </div>
         <!-- Paladio -->
-        <div class="servicio-card reveal">
-          <div class="servicio-icon" style="background:rgba(0,180,216,0.1);color:var(--cyan);">
-            <i class="fas fa-gem"></i>
+        <div class="servicio-card servicio-card--photo reveal">
+          <div class="servicio-photo" style="background-image:url('/img/paladio.jpg');">
+            <div class="servicio-photo-overlay"></div>
+            <div class="servicio-photo-badge"><i class="fas fa-gem"></i> Paladio</div>
           </div>
-          <h3>Compra de Paladio 💎</h3>
-          <p>Metal precioso industrial con demanda creciente. Diversifica tu cartera de metales con un activo escaso y estratégico.</p>
+          <div class="servicio-icon" style="background:rgba(0,180,216,0.1);color:var(--cyan);">💎</div>
+          <div class="servicio-title">Compra de Paladio</div>
+          <div class="servicio-desc">Metal precioso industrial con demanda creciente. Diversifica tu cartera de metales con un activo escaso y estratégico.</div>
           <ul class="servicio-benefits">
-            <li>Paladio de inversión certificado</li>
-            <li>Alta demanda industrial</li>
-            <li>Diversificación de cartera</li>
-            <li>Asesoramiento personalizado</li>
+            <li><i class="fas fa-check-circle"></i> Paladio de inversión certificado</li>
+            <li><i class="fas fa-check-circle"></i> Alta demanda industrial</li>
+            <li><i class="fas fa-check-circle"></i> Diversificación de cartera</li>
+            <li><i class="fas fa-check-circle"></i> Asesoramiento personalizado</li>
           </ul>
-          <a href="#contacto" class="servicio-btn" onclick="scrollToContact()">Solicitar información <i class="fas fa-arrow-right"></i></a>
+          <button class="servicio-btn" onclick="scrollToContact()">Solicitar información <i class="fas fa-arrow-right"></i></button>
         </div>
         <!-- Bitcoin -->
-        <div class="servicio-card reveal">
-          <div class="servicio-icon" style="background:rgba(201,168,76,0.1);color:var(--gold);">
-            <i class="fab fa-bitcoin"></i>
+        <div class="servicio-card servicio-card--photo reveal">
+          <div class="servicio-photo" style="background-image:url('/img/bitcoin.jpg');">
+            <div class="servicio-photo-overlay"></div>
+            <div class="servicio-photo-badge"><i class="fab fa-bitcoin"></i> Bitcoin</div>
           </div>
-          <h3>Compra de Bitcoin ₿</h3>
-          <p>Compra bitcoin de forma segura con nuestro asesoramiento. Te ayudamos a adquirir satoshis sin complicaciones.</p>
+          <div class="servicio-icon" style="background:rgba(201,168,76,0.1);color:var(--gold);">₿</div>
+          <div class="servicio-title">Compra de Bitcoin</div>
+          <div class="servicio-desc">Compra bitcoin de forma segura con nuestro asesoramiento. Te ayudamos a adquirir satoshis sin complicaciones.</div>
           <ul class="servicio-benefits">
-            <li>Compra segura y guiada</li>
-            <li>Sin KYC opciones disponibles</li>
-            <li>DCA (compra periódica)</li>
-            <li>Formación incluida</li>
+            <li><i class="fas fa-check-circle"></i> Compra segura y guiada</li>
+            <li><i class="fas fa-check-circle"></i> Sin KYC opciones disponibles</li>
+            <li><i class="fas fa-check-circle"></i> DCA (compra periódica)</li>
+            <li><i class="fas fa-check-circle"></i> Formación incluida</li>
           </ul>
-          <a href="#contacto" class="servicio-btn" onclick="scrollToContact()">Solicitar información <i class="fas fa-arrow-right"></i></a>
+          <button class="servicio-btn" onclick="scrollToContact()">Solicitar información <i class="fas fa-arrow-right"></i></button>
         </div>
         <!-- Autocustodia -->
-        <div class="servicio-card reveal">
-          <div class="servicio-icon" style="background:rgba(201,168,76,0.1);color:var(--gold);">
-            <i class="fas fa-shield-halved"></i>
+        <div class="servicio-card servicio-card--photo reveal">
+          <div class="servicio-photo" style="background-image:url('/img/autocustodia.jpg');">
+            <div class="servicio-photo-overlay"></div>
+            <div class="servicio-photo-badge"><i class="fas fa-shield-halved"></i> Autocustodia</div>
           </div>
-          <h3>Autocustodia Bitcoin 🔐</h3>
-          <p>Aprende a custodiar tus propios bitcoin. Te enseñamos a configurar hardware wallets y gestionar tus claves privadas.</p>
+          <div class="servicio-icon" style="background:rgba(201,168,76,0.1);color:var(--gold);">🔐</div>
+          <div class="servicio-title">Autocustodia Bitcoin</div>
+          <div class="servicio-desc">Aprende a custodiar tus propios bitcoin. Te enseñamos a configurar hardware wallets y gestionar tus claves privadas.</div>
           <ul class="servicio-benefits">
-            <li>Configuración hardware wallet</li>
-            <li>Gestión de semillas (seed)</li>
-            <li>Multisig avanzado</li>
-            <li>Sesión personalizada 1:1</li>
+            <li><i class="fas fa-check-circle"></i> Configuración hardware wallet</li>
+            <li><i class="fas fa-check-circle"></i> Gestión de semillas (seed)</li>
+            <li><i class="fas fa-check-circle"></i> Multisig avanzado</li>
+            <li><i class="fas fa-check-circle"></i> Sesión personalizada 1:1</li>
           </ul>
-          <a href="#contacto" class="servicio-btn" onclick="scrollToContact()">Solicitar información <i class="fas fa-arrow-right"></i></a>
+          <button class="servicio-btn" onclick="scrollToContact()">Solicitar información <i class="fas fa-arrow-right"></i></button>
         </div>
         <!-- Formaciones Online -->
         <div class="servicio-card servicio-card--photo reveal">
@@ -2399,7 +2435,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="#inicio" class="nav-logo">
-            <img src="data:image/jpeg;base64,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" alt="AuBit" class="logo-img" style="height:36px;" />
+            <img src="/img/logo.jpg" alt="AuBit" class="logo-img" style="height:36px;" />
           </a>
           <p>Soberanía financiera desde Euskadi. Protege tu patrimonio con oro, plata, bitcoin y educación financiera.</p>
         </div>
