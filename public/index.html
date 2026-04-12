@@ -1,0 +1,2680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AUBIT | Soberanía Financiera</title>
+  <meta name="description" content="AUBIT — Protege tu patrimonio con oro, plata, bitcoin y educación financiera. Soberanía financiera desde Euskadi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #DFC070;
+      --gold-dark: #A8893A;
+      --dark: #0D0D0D;
+      --dark-2: #141414;
+      --dark-3: #1A1A1A;
+      --dark-4: #222222;
+      --gray: #888;
+      --gray-light: #AAAAAA;
+      --white: #F5F3EE;
+      --white-2: #E8E4DC;
+      --cyan: #00B4D8;
+      --cyan-subtle: rgba(0, 180, 216, 0.08);
+      --font-main: 'Inter', sans-serif;
+      --font-display: 'Playfair Display', serif;
+      --radius: 12px;
+      --radius-lg: 20px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.4);
+      --shadow-gold: 0 0 40px rgba(201,168,76,0.15);
+      --transition: 0.3s ease;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: var(--dark);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      color: var(--gray-light);
+      font-size: 1.05rem;
+      max-width: 640px;
+      line-height: 1.7;
+    }
+
+    .gold {
+      color: var(--gold);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      font-family: var(--font-main);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--dark);
+    }
+
+    .btn-gold:hover {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── NAVBAR ─── */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 16px 0;
+      transition: var(--transition);
+    }
+
+    #navbar.scrolled {
+      background: rgba(13,13,13,0.95);
+      backdrop-filter: blur(20px);
+      padding: 10px 0;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-img {
+      mix-blend-mode: screen;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--gray-light);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-cta .btn {
+      padding: 10px 24px;
+      font-size: 0.85rem;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      transition: var(--transition);
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(13,13,13,0.98);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--white);
+    }
+
+    .mobile-menu a:hover {
+      color: var(--gold);
+    }
+
+    .mobile-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    /* ─── HERO ─── */
+    #inicio {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(0,180,216,0.04) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 80%, rgba(201,168,76,0.03) 0%, transparent 40%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+      padding: 140px 0 80px;
+    }
+
+    .hero-content {
+      max-width: 720px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      border-radius: 50px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.2);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge i {
+      font-size: 0.7rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--gray-light);
+      line-height: 1.8;
+      margin-bottom: 40px;
+      max-width: 560px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 64px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      text-align: left;
+    }
+
+    .hero-stat-number {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .hero-stat-label {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    /* ─── QUÉ ES AUBIT ─── */
+    #que-es {
+      padding: 120px 0;
+      background: var(--dark-2);
+    }
+
+    .que-es-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .pillar-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .pillar-card {
+      display: flex;
+      gap: 20px;
+      padding: 28px;
+      background: var(--dark-3);
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: var(--transition);
+    }
+
+    .pillar-card:hover {
+      border-color: rgba(201,168,76,0.2);
+      transform: translateX(4px);
+    }
+
+    .pillar-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(201,168,76,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--gold);
+      font-size: 1.2rem;
+    }
+
+    .pillar-title {
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .pillar-desc {
+      font-size: 0.9rem;
+      color: var(--gray-light);
+      line-height: 1.6;
+    }
+
+    /* ─── SERVICIOS ─── */
+    #servicios {
+      padding: 120px 0;
+    }
+
+    .servicios-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .servicios-header .section-subtitle {
+      margin: 0 auto;
+    }
+
+    .servicios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .servicio-card {
+      background: var(--dark-2);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .servicio-card:hover {
+      border-color: rgba(201,168,76,0.15);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .servicio-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 24px;
+    }
+
+    .servicio-card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .servicio-card p {
+      font-size: 0.9rem;
+      color: var(--gray-light);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .servicio-benefits {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .servicio-benefits li {
+      font-size: 0.85rem;
+      color: var(--gray-light);
+      padding: 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .servicio-benefits li::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+
+    .servicio-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gold);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .servicio-btn:hover {
+      gap: 12px;
+    }
+
+    .servicio-card--photo {
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .servicio-card--photo .servicio-photo {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .servicio-card--photo .servicio-photo-body {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .servicio-card--photo .servicio-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(201,168,76,0.9);
+      color: var(--dark);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ─── HOY / EVENTOS ─── */
+    #hoy {
+      padding: 120px 0;
+      background: var(--dark-2);
+    }
+
+    .hoy-header {
+      margin-bottom: 64px;
+    }
+
+    .eventos-grid--2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+
+    .evento-card {
+      background: var(--dark-3);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: var(--transition);
+    }
+
+    .evento-card:hover {
+      border-color: rgba(201,168,76,0.15);
+    }
+
+    .evento-date-bar {
+      padding: 16px 28px;
+      background: rgba(201,168,76,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .evento-date {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    .evento-status {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 12px;
+      border-radius: 50px;
+    }
+
+    .evento-status--proximo {
+      background: rgba(201,168,76,0.15);
+      color: var(--gold);
+    }
+
+    .evento-status--completado {
+      background: rgba(136,136,136,0.15);
+      color: var(--gray);
+    }
+
+    .evento-body {
+      padding: 28px;
+    }
+
+    .evento-body h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+    }
+
+    .evento-body p {
+      font-size: 0.9rem;
+      color: var(--gray-light);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .evento-meta {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .evento-meta span {
+      font-size: 0.8rem;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .evento-temas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .evento-tema {
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 50px;
+      background: rgba(201,168,76,0.08);
+      color: var(--gold-light);
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .countdown-wrapper {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .countdown-item {
+      text-align: center;
+      background: rgba(201,168,76,0.06);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      min-width: 64px;
+    }
+
+    .countdown-number {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      display: block;
+    }
+
+    .countdown-label {
+      font-size: 0.65rem;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .evento-card--completado {
+      opacity: 0.6;
+    }
+
+    .evento-card--completado:hover {
+      opacity: 0.8;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--dark-3);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      max-width: 500px;
+      width: 100%;
+      position: relative;
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--gray);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      color: var(--white);
+    }
+
+    .modal-content h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+
+    .modal-content .modal-sub {
+      color: var(--gray-light);
+      font-size: 0.9rem;
+      margin-bottom: 32px;
+    }
+
+    .modal-field {
+      margin-bottom: 20px;
+    }
+
+    .modal-field label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--gray-light);
+    }
+
+    .modal-field input {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--dark-4);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      color: var(--white);
+      font-size: 0.9rem;
+      font-family: var(--font-main);
+      transition: var(--transition);
+    }
+
+    .modal-field input:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .modal-submit {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--dark);
+      border: none;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: var(--font-main);
+      transition: var(--transition);
+    }
+
+    .modal-submit:hover {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    }
+
+    .modal-success {
+      display: none;
+      text-align: center;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .modal-success i {
+      font-size: 3rem;
+      color: var(--gold);
+    }
+
+    .modal-success h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+    }
+
+    .modal-success p {
+      color: var(--gray-light);
+      font-size: 0.9rem;
+    }
+
+    /* Noticias */
+    .noticias-header {
+      margin-bottom: 36px;
+    }
+
+    .noticias-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .noticia-card {
+      background: var(--dark-3);
+      border-radius: var(--radius);
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: var(--transition);
+    }
+
+    .noticia-card:hover {
+      border-color: rgba(201,168,76,0.15);
+    }
+
+    .noticia-card .noticia-date {
+      font-size: 0.75rem;
+      color: var(--gray);
+      margin-bottom: 8px;
+    }
+
+    .noticia-card h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .noticia-card p {
+      font-size: 0.85rem;
+      color: var(--gray-light);
+      line-height: 1.6;
+    }
+
+    /* ─── BLOG ─── */
+    #blog {
+      padding: 120px 0;
+    }
+
+    .blog-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .blog-header .section-subtitle {
+      margin: 0 auto;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .blog-card {
+      background: var(--dark-2);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: var(--transition);
+    }
+
+    .blog-card:hover {
+      border-color: rgba(201,168,76,0.15);
+      transform: translateY(-4px);
+    }
+
+    .blog-card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .blog-card-body {
+      padding: 28px;
+    }
+
+    .blog-card-body h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .blog-card-body p {
+      font-size: 0.88rem;
+      color: var(--gray-light);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .blog-card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .blog-card-meta span {
+      font-size: 0.75rem;
+      color: var(--gray);
+    }
+
+    .blog-card-meta a {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gold);
+      transition: var(--transition);
+    }
+
+    .blog-card-meta a:hover {
+      color: var(--gold-light);
+    }
+
+    /* ─── CONFIANZA ─── */
+    #confianza {
+      padding: 120px 0;
+      background: var(--dark-2);
+    }
+
+    .confianza-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .confianza-header .section-subtitle {
+      margin: 0 auto;
+    }
+
+    .valores-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .valor-card {
+      text-align: center;
+      padding: 40px 24px;
+      background: var(--dark-3);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: var(--transition);
+    }
+
+    .valor-card:hover {
+      border-color: rgba(201,168,76,0.15);
+      transform: translateY(-4px);
+    }
+
+    .valor-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(201,168,76,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: var(--gold);
+      font-size: 1.4rem;
+    }
+
+    .valor-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .valor-card p {
+      font-size: 0.85rem;
+      color: var(--gray-light);
+      line-height: 1.6;
+    }
+
+    /* ─── EQUIPO ─── */
+    #equipo {
+      padding: 120px 0;
+    }
+
+    .equipo-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .equipo-header .section-subtitle {
+      margin: 0 auto;
+    }
+
+    .equipo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .equipo-card {
+      background: var(--dark-2);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .equipo-card:hover {
+      border-color: rgba(201,168,76,0.15);
+    }
+
+    .equipo-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      object-fit: cover;
+    }
+
+    .equipo-info {
+      margin-top: 16px;
+    }
+
+    .equipo-info h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .equipo-info .equipo-role {
+      font-size: 0.85rem;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .equipo-info p {
+      font-size: 0.88rem;
+      color: var(--gray-light);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .equipo-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .equipo-tag {
+      font-size: 0.7rem;
+      padding: 4px 10px;
+      border-radius: 50px;
+      background: rgba(201,168,76,0.08);
+      color: var(--gold-light);
+      border: 1px solid rgba(201,168,76,0.12);
+    }
+
+    /* ─── RESEÑAS ─── */
+    #resenas {
+      padding: 120px 0;
+      background: var(--dark-2);
+    }
+
+    .resenas-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .resenas-header .section-subtitle {
+      margin: 0 auto;
+    }
+
+    .resenas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .resena-card {
+      background: var(--dark-3);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: var(--transition);
+    }
+
+    .resena-card:hover {
+      border-color: rgba(201,168,76,0.15);
+    }
+
+    .resena-stars {
+      color: var(--gold);
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+    }
+
+    .resena-texto {
+      font-size: 0.9rem;
+      color: var(--gray-light);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .resena-autor {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .resena-autor-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--dark-4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--gold);
+    }
+
+    .resena-autor-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .resena-autor-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .resena-autor-desc {
+      font-size: 0.75rem;
+      color: var(--gray);
+    }
+
+    /* ─── FAQ ─── */
+    #faq {
+      padding: 120px 0;
+    }
+
+    .faq-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .faq-header .section-subtitle {
+      margin: 0 auto;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: var(--dark-2);
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.05);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .faq-question:hover {
+      color: var(--gold);
+    }
+
+    .faq-question i {
+      font-size: 0.8rem;
+      color: var(--gray);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.open .faq-question i {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .faq-answer-inner {
+      padding: 0 24px 20px;
+      font-size: 0.88rem;
+      color: var(--gray-light);
+      line-height: 1.7;
+    }
+
+    /* ─── CTA FINAL ─── */
+    .cta-final {
+      padding: 100px 0;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 50% 50%, rgba(201,168,76,0.08) 0%, transparent 60%);
+    }
+
+    .cta-final .section-title {
+      max-width: 600px;
+      margin: 0 auto 16px;
+    }
+
+    .cta-final .section-subtitle {
+      margin: 0 auto 40px;
+      text-align: center;
+    }
+
+    /* ─── CONTACTO ─── */
+    #contacto {
+      padding: 120px 0;
+      background: var(--dark-2);
+    }
+
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .contacto-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .contacto-info > p {
+      font-size: 0.95rem;
+      color: var(--gray-light);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .contacto-dato {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .contacto-dato-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(201,168,76,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .contacto-dato-text {
+      font-size: 0.9rem;
+    }
+
+    .contacto-dato-text span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--gray);
+      margin-bottom: 2px;
+    }
+
+    .form-wrapper {
+      background: var(--dark-3);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--gray-light);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--dark-4);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      color: var(--white);
+      font-size: 0.9rem;
+      font-family: var(--font-main);
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-group select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23888' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--dark);
+      border: none;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: var(--font-main);
+      transition: var(--transition);
+    }
+
+    .form-submit:hover {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 48px 24px;
+    }
+
+    .form-success i {
+      font-size: 3rem;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .form-success h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+
+    .form-success p {
+      color: var(--gray-light);
+      font-size: 0.9rem;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 80px 0 0;
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+    }
+
+    .footer-brand p {
+      font-size: 0.88rem;
+      color: var(--gray-light);
+      line-height: 1.7;
+      margin-top: 16px;
+      max-width: 320px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col ul li a {
+      font-size: 0.88rem;
+      color: var(--gray-light);
+      transition: var(--transition);
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-bottom p {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--dark-3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray-light);
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .footer-social a:hover {
+      background: var(--gold);
+      color: var(--dark);
+    }
+
+    /* ─── WHATSAPP FLOAT ─── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 900;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.6rem;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+      transition: var(--transition);
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 24px rgba(37,211,102,0.5);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+      .que-es-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .contacto-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+      .valores-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .hero-title {
+        font-size: 2.4rem;
+      }
+      .hero-stats {
+        gap: 32px;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .eventos-grid--2col {
+        grid-template-columns: 1fr;
+      }
+      .blog-grid,
+      .noticias-grid,
+      .resenas-grid {
+        grid-template-columns: 1fr;
+      }
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+      .equipo-grid {
+        grid-template-columns: 1fr;
+      }
+      .servicios-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+      .hero-btns {
+        flex-direction: column;
+      }
+      .hero-btns .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .countdown-wrapper {
+        justify-content: center;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .modal-content {
+        padding: 32px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAVBAR ═══ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#inicio" class="nav-logo">
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4gIoSUNDX1BST0ZJTEUAAQEAAAIYAAAAAAQwAABtbnRyUkdCIFhZWiAAAAAAAAAAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAAHRyWFlaAAABZAAAABRnWFlaAAABeAAAABRiWFlaAAABjAAAABRyVFJDAAABoAAAAChnVFJDAAABoAAAAChiVFJDAAABoAAAACh3dHB0AAAByAAAABRjcHJ0AAAB3AAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAFgAAAAcAHMAUgBHAEIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFhZWiAAAAAAAABvogAAOPUAAAOQWFlaIAAAAAAAAGKZAAC3hQAAGNpYWVogAAAAAAAAJKAAAA+EAAC2z3BhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABYWVogAAAAAAAA9tYAAQAAAADTLW1sdWMAAAAAAAAAAQAAAAxlblVTAAAAIAAAABwARwBvAG8AZwBsAGUAIABJAG4AYwAuACAAMgAwADEANv/bAEMABAMDBAMDBAQDBAUEBAUGCgcGBgYGDQkKCAoPDRAQDw0PDhETGBQREhcSDg8VHBUXGRkbGxsQFB0fHRofGBobGv/bAEMBBAUFBgUGDAcHDBoRDxEaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGv/CABEIAJwBiAMBIgACEQEDEQH/xAAcAAEBAAMAAwEAAAAAAAAAAAAACAUGBwEDBAL/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIQAxAAAAGfwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHn7jKbVQ/uI8xFcSaekAAAAAAAAAAAAAAAAAAAAFPZDn1BnPc7xbpx7JW79OxaOOxeOMm5lSZEeH2DXwBt+qWyTFrlec+JnAAB5zGG6SfMpvNElfml/YR7iLwlk1D2UZkiQvPiqyVfG96IAAAAAAbDZMbWSQxQE/0Ae6dqJncqvmfS+aHIbvkCwyKtfz+AB5NssTgXRDj9CxjcZCX52rEnrx97wofB7vTvBrGPuSHDrHfOB9/InZn6Tu33ZLQjlXv6z95O9nc27KS9zq2dRJCAAAAABsNtRLZR6Prjf9Fh46TPWWb8shfksrjur0OQl+cxhwZEqvm1A6OSJXOJ3A49yOpJbLlhG7oRPh3jR96Kshq5YaOs1BL/AHwzvmEfaWNIlIY8+H7/AIPvJptmJbbJu5t0nmoAAAAABsNkydWJDHcOV9xMRwaiZ2KX571fRTh93xbaRF2v7Br46jy6mTpnCdvmE7fkp+9pd8VWHNpU8Ydy6KRB23pPvNqhq5JqPp75k/vII/dvew5pkt9lY6P9+PyBNFtxJbZN3Nelc1AAAAAALUy0MeC6PohDuhkp275wMqzonK+eFIoXGdwANn1gZjDgBs3xYYezcNLG76r8fg27CYwbk00bj69SH2/EGb/eBDa9UGQx4AAAAAAAPPgefAeXgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//EADAQAAEDAwIDBgUFAQAAAAAAAAQCAwUAAQYHNREVFhASExQwNBcgMTM2ITJBUHAj/9oACAEBAAEFAv8ATouFLmHOg5ij49+NI/rRBXDCIKIbhQWpwB8zK8ftMBrQptf9SFhEU+J0FEV0FEVGYxHxD+YzK4mOZIcYfx6V5xGHYhGSBPQURXQURUmwgU/5AcbkZFjouZqRiSopfzx8aRKP9FzNdFzNdFzNXw2ZtRkYWBegIsqTXIQxkXf14bNDVkFu3YF+IcjxxLICJy2pPt6wHYcpykuFOtqHI0wu7jM5u/bZPevCB+RigpZs0/UILxY/58MPHj5UKcBkHXXkMN9SRVNz8Y6p5hktrLcftDFYH4PJMxszyCofGIoiLy0JiPmvUgt4ktvv9dNv26k+2rAdh1D3e31E9rObv242F5+ZIdSMPicoq2TTYdjopSe7e1uN+XlVe3DsQhTirgkptWnu9ZHsfZgEk8WJn6Eqg4o6RBXLSMofTYjz1oO10xGaiPvT6gSEW9OC3iS2+/103/ZqR7esB2HUPd4PHyZp9pPhNTV7Klu3ToPvP5oZ5SDEfuKUO7YhjJA/ITMXuPC3Az3dYj+QSlrctrT3ep9CnIblJ1Mwcg+vE4JUIHn8u24nTe3/AB1G23BDBmIhC0rS6aMyvIZARyF9OC3hSbKtygCmBGBaJCHNtyGNocZkRsmNDMUwO0M3nEpIip48fkwwLycHqKb3iKww3zcHqKF3SIvcf4M93WI/kMrttae70q9rW8wxSXmlVOjSBQpwxAhOm32NR9tqA2XOvyHj6kFvB6roBvPyfFOQyiavkMouufydJyOUTSshk1Xx3NXRVvMsnDybCRpDsBHuWYw1ZhmTxEGVL+H0XUNBDwiMzC85Bxe5fwZ7usQtxyCV22tPd6yL9ITxF0gl5u+Ezb0oLqBHocj9Nvsaj7bUBsudfkXqQW8SW33+uAAjFpz8EYNisJjRCoXOxWRZS31E9rObv2YIF5qakzbRwHxIJr4kE0BqA6SY+0khjucvl21d9ueBXHylYFErWZK7bWnu9ZHsdWtdV8DiXghs8eS3BabfY1H22oDZc6/IvUhIsy0nIJuoG8NIcdPwyBE6k+3rAdhzwAkmUtCyHEa3Aac3fs09C8KO1BM8GL7EquhUQX56NzoPys3h2SNkiyEQHKoawiIaW9ODhyUrtuDDMkzDEcKKtxtLqOTgUiMDauWaOC1lGQ3mydNvsajbbUDs2dfkXqRp4tgOYiVzASmiGn61J9tWA7C6UwyrmAlcxEqZVZcr2DZBJCMnSZcjftFnpEJk6ULkqsq6bi5VKhoJyyWKSyU8w+5ksq6gM4iPd6qmK6qmK6qmKXk0suz5TxN6CljY2xsydIopnJJQdosx8571O9eu9eu9etPi2R06glsEsVhBww8LnhLb8p3r13r/ANdx/wA4/8QAFBEBAAAAAAAAAAAAAAAAAAAAcP/aAAgBAwEBPwF6/8QAFBEBAAAAAAAAAAAAAAAAAAAAcP/aAAgBAgEBPwF6/8QAPBAAAQMCAgUJBgUDBQAAAAAAAQACAwQRAnMREyExNCIyQVFhcpGSsQUUIDBCcSMzUmKiJFBwQVOBk6H/2gAIAQEABj8C/wAnOZQx4sO8k2X5Uf8A2BOgq2YJG/25kEDcUjzYJkDOfve7rKdRxVDXTj6Vjib/AFUe1nb2IseLOG8f2qGR7ZcT2Anlrmy+dc2XzozUjHazddxvZYYPzZ+SHdSbNG4iRpvdR1BFn8133TqieNwe7fhdZc2Xzrmy+dVMMXMY8gfCJ6SDHGem64X+Sayuj1ZcLj5Gpo2Y5LXtdcL/SC4X+QXC/yXC/yVquB8X3GgsooXSkb0PfYHR33Ho/0FHR6uLVkhimlbzmMJC/Kg8FUe9MY3V2thVF3zoGY5MhpmRuaWYuUvyYPBRvdvc0FVuafgAG8qlg6WsF1WUjOdTG33UNS0bYn2P2PyDLVyCJmrIuVqqOobK/fYJ0krgxjRckrj4POsMddA53fRZOxssbutB9Pw0vN7OxN1VtZjONVOvtf6PvopZZqRrnvjBJuVJBSR6uMNbyfm0WaFVZTvRFVv3Cou+dAzHKLKQUHcb6KtzT8FLF0YsTvspJXc2Nt0XvPFEgqqg/Uw2RB3hWC4eXyKx0YWNLnHoCu6CQDu6HZJVdlaZqedxfqTySepYjvbKLJz/ZbpB+oNF00+0zJg6AW2CxRRPeOwKjDhYiIKV0UL3twN2hqLnwSNA6S35lFmhVWU70RVb9wqLvHQMxyiykBCMMIPKkO4JjL81tlWEbtafgqasjYwYApgDypjgChmbvY8FRyt2h7bqqi+nFib9lSZrfVblPmO9dFH3lV5TvTQ7JKrGsBc4x7guEm8iDY6OUnup2vP48pu7sUfs+F2JwOKSyre8FTZqc2eZjHaw84oOYbtPSFhmmjY/qLlWtjnic4x7AHfMos0Ih20FcHD5Efd4WRX34RZAVULZQ3diC4KHyrV00bY2dQWOpp45XdbgsFPG2NnU0IQ07DFTP3yjpW34IL7HS8sqmpGnmDG7RCDzouQVTVbRzxgKpM1vroqMx3roo+8qvKd6aHZJV3bl+bH5lyZGH7FYfZdQIH9Panx1ocJhvuq3vBU2boocoKbuN9Pm0WaFVZTvRFVv3Cou+dAzHKLKQUHcb6KtzT8FLF0YsTvspJXc2Nt0XvPFEgqqg/Uw2RB3hWC4eXyKx0YWNLnHoCu6CQDu6HZJVdlaZqedxfqTySepYjvbKLJz/ZbpB+oNF00+0zJg6AW2CxRRPeOwKjDhYiIKV0UL3twN2hqLnwSNA6S35lFmhVWU70RVb9wqLvHQMxyiykBCMMIPKkO4JjL81tlWEbtafgqasjYwYApgDypjgChmbvY8FRyt2h7bqqi+nFib9lSZrfVblPmO9dFH3lV5TvTQ7JKrGsBc4x7guEm8iDY6OUnup2vP48pu7sUfs+F2JwOKSyre8FTZqc2eZjHaw84oOYbtPSFhmmjY/qLlWtjnic4x7AHfMos0Ih20FcHD5Efd4WRX34RZAVULZQ3diC4KHyrV00bY2dQWOpp45XdbgsFPG2NnU0IQ07DFTP3yjpW34IL7HS8sqmpGnmDG7RCDzouQVTVbRzxgKpM1vroqMx3roo+8qvKd6aHZJV3bl+bH5lyZGH7FYfZdQIH9Panx1ocJhvuq3vBU2boocoKbuN9Pm0WaFVZTvRFVv3Cou+dAzHKLKQUHcb6KtzT8FLF0YsTvspJXc2Nt0XvPFEgqqg/Uw2RB3hWC4eXyKx0YWNLnHoCu6CQDu6HZJVdlaZqedxfqTySepYjvbKLJz/ZbpB+oNF00+0zJg6AW2CxRRPeOwKjDhYiIKV0UL3twN2hqLnwSNA6S35lFmhVWU70RVb9wqLvHQMxyiykBCMMIPKkO4JjL81tlWEbtafgqasjYwYApgDypjgChmbvY8FRyt2h7bqqi+nFib9lSZrfVblPmO9dFH3lV5TvTQ7JKrGsBc4x7guEm8iDY6OUnup2vP48pu7sUfs+F2JwOKSyre8FTZqc2eZjHaw84oOYbtPSFhmmjY/qLlWtjnic4x7AHfMos0Ih20FcHD5Efd4WRX34RZAVULZQ3diC4KHyrV00bY2dQWOpp45XdbgsFPG2NnU0IQ07DFTP3yjpW34IL7HS8sqmpGnmDG7RCDzouQVTVbRzxgKpM1vroqMx3roo+8qvKd6aHZJV3bl+bH5lyZGH7FYfZdQIH9Panx1ocJhvuq3vBU2boocoKbuN9Pm0WaFVZTvRFVv3Cou+dAzHKLKQUHcb6KtzT8FLF0YsTvspJXc2Nt0XvPFEgqqg/Uw2RB3hWC4eXyKx0YWNLnHoCu6CQDu6HZJVdlaZqedxfqTySepYjvbKLJz/ZbpB+oNF00+0zJg6AW2CxRRPeOwKjDhYiIKV0UL3twN2hqLnwSNA6S35lFmhVWU70RVb9wqLvHQMxyiykBCMMIPKkO4JjL81tlWEbtafgqasjYwYApgDypjgChmbvY8FRyt2h7bqqi+nFib9lSZrfVblPmO9dFH3lV5TvTQ7JKrGsBc4x7guEm8iDY6OUnup2vP48pu7sUfs+F2JwOKSyre8FTZqc2eZjHaw84oOYbtPSFhmmjY/qLlWtjnic4x7AHfMos0Ih20FcHD5Efd4WRX34RZAVULZQ3diC4KHyrV00bY2dQWOpp45XdbgsFPG2NnU0IQ07DFTP3yjpW34IL7HS8sqmpGnmDG7RCDzouQVTVbRzxgKpM1vroqMx3roo+8qvKd6aHZJV3bl+bH5lyZGH7FYfZdQIH9Panx1ocJhvuq3vBU2boocoKbuN9Pm0WaFVZTvRFVv3Cou+dAzHKLKQUHcb6KtzT8FLF0YsTvspJXc2Nt0XvPFEgqqg/Uw2RB3hWC4eXyKx0YWNLnHoCu6CQDu6HZJVdlaZqedxfqTySepYjvbKLJz/ZbpB+oNF00+0zJg6AW2CxRRPeOwKjDhYiIKV0UL3twN2hqLnwSNA6S35lFmhVWU70RVb9wqLvHQMxyiykFH3lV5TvTQ7JKrsrRYC5U1RUjAZua09Scw86R4AVb3gqbN0UOUFN3G+nzaKU00ur1gOLCqkNFyY3Lg5vKqz3mJ0V7WxBUXfOgZjlE6ngfI3V72hcHN5VCDvwBVuadMtS7fM+w+wUcAO2Z/wD5pDhvG1U0/wCtgTpAOTM3EmUVW/DPHsaT9QVq2FsnUelYtSX9jnKj9l0QYXPdZ4b9IVXlO9E5lRG2RurJsVjp4GRu62hFkjQ5p3grhIfIrx00QPcRkqpGxNHWUBFspo+YOvtVb3gqbN0UOSFN3G+nzaYGoiB1Y+tcTF51xMPnX4EjJO6VRd86BmOWGaVkZ/c5cTD51xMPnVY5puDKdLYaarkjjbuAKaa2Z0xbuxfAIaWrkjiG5oKb77O6bDuxK7TYrBFVOLep21Fr6pzR+3YmzxSFszTcOTmSVsrmuFiLrW0cpikta7Vx8viuPl8Vx0virOrpfFXnlfIf3HQ4UU74Q7fhQZW1D5mt2gHQ2KKslYxosBdGarkMsp+o/N3ret6rPeJmR3tbE5UeolZIQ48V19AZNPHG7WO2OcozTytkbqvpK3rf/mb/xAApEAEAAgECBAYDAQEBAAAAAAABABEhMVEQQWHwcYGRobHxIDDRwVBw/9oACAEBAAE/If8A00lhibqB58ENhcLsro/85dQQQaS3VSdjaIdU6xOKtTbDq20hkf8AkkxfgXOnhO3/AMnav5GCkU9GbQwFO7bWX3gL2k63Np+eVJsaPxd9J2/+Tt/8lpBbbmh/AjO1oMl1Og9M5vlm7P0PKUsQwcRC7BglrfAMsLvDOGaEVDB5wsJ6xef7yLw2bTdabwJRs7TBcT6rd/YuXMUprO07cO6bwX5khW4trU6v7MCiU2snad/wYXaAQKqvMiZg3URPVM6loOzX9DCzd8W1E4+KflLk5moCfToTcNAEMIGQWJCPc6HngWsrq75e0RyUZBz44KJq2RrxgCnQN0z+3s+87BunuODey7cO6bz2v5nvCdi2Tse/4YEv0xMKiX4BLRR1orZESZ80MkTDkRiENroT7ZEaFI5OAhwYC1jwsLVfFuHiOFppCMAXLy5T+pJaxgA6ifMhtGOaN8I1turdzH7GESYJkVJpM1AlIH7R9h3Q+pMe1xOx7cFhOxnM6I+YmHFT7GaoqrvQjh2qUev4Phsr1cvtMeQPM1+IsXwli2Up8yKOUn4jJAN3eJtWm075u4C7y8vhmmTwuqc+DUXtDUWfYIuSPNBKbERmg2hysnLDYhNxf84AqKy+IirNQmID4liWJH9XWiGJ9YAKtn7O17wGgVIms+hQ7pCYeVl5FcO5QGtdFwSMlFlqDiLSoQfVZ+VtfKKaq15/hbjl+dp7TNxaHV09uF3bZ8rT2mOAVepknatk/wAzvG7h718Tt26c+DUSAMqtT6rFKZ6LFNaOZk7DyjX0671vnOz7T3T4lu8FUd5wat+1d8qy2aZabkX+v1nbvw0DwcWRbJdG4eW/0iTPyGEYXNA+nEZLoPi5gxUhPAilAA4AArTg8FcSsyE0cnV01nIdwn+Z3jdwSmXSv0nbt0dfPg1KMEWk+4QGT80Io+nT1aDtCg1V18Z2fae6fHDse376h9g3T3EZr3gWodvPBvBwWfjqLVxHsKoFz307RsnY9+OZ5ttlgh7gpp1dp94m36iFRUxUHxmRF78ElyWAeA/iDXEaPlFoBaeY2PB9VpJrc/Sdv3Sp2/pFqbuBhSaAROrQwGnOOhQZvrOz7T3T44dj2/bUQ8ALsqr1uUdlBviKVam+ACz0i523bh3TeDnxFKayq3N8YkgFPKdj341wq4dnOYVMw6OLm04PGAHm0+NTGAI+PP3h7DCvleMOVTk0POaF5wlJyrYQq+ccHiVMw3nExw+sFqBqegWJPpkrt/MEHTfI+Jc5dE16k7PtPfvjh3nb9sxrB1y8QZrafTp9Yl1hNaWdl24d03gJNyAGJ9Ymx6SECrKNjnjyGD8EFvtXXX4W+F0AiDbuXXUIIDRGDArAP+4tUmQ5+kobQLkYtAytQx2jK1y/AQrW4ybLlzV4OfWyquMdKx58KpZngEBjAK5o/b1XrOq9Z1XrMiSxR8wavzopghLjeKo1ezA2AC3l3Oq9Z1XrL/5V1pLXnwtuy71/83//2gAMAwEAAgADAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFIBAAAAAAAAAAAAAAAAAAAAFMIOMOCAIMAAAADLOFAAAAAAAAICKLNCAFJCAEIKBHBCJAAAAAALEPJMKBHHKIALLNLFEOAAAAABDCKLPAEMMGMDALBMHAKAAAAAENBLIPCAAAAEIABMEMEIAAAAAAAEIIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/8QAFBEBAAAAAAAAAAAAAAAAAAAAcP/aAAgBAwEBPxB6/8QAFBEBAAAAAAAAAAAAAAAAAAAAcP/aAAgBAgEBPxB6/8QAKxAAAgECBQIFBAMAAAAAAAAAAAERITEQQVFh8HGBIDCRocFAsdHxUHDh/9oACAEBAAE/EP7NuEZYPeylSdivy/UbdqnUNSKP+OToie+b2Gw8C6qby9FY3kXtAlYyjusYea/wNEfjyWT/AIm4sj/onIcYqqrQq47sD3iSsn1WQbUWzNmTM/syptrqVxP9hjNhU4ylVqnmTMeC4l6tYzQ4TOU/I67H8Vmi68hO1qNqS5y/kOX8hx/lHNWXKk3L89ncgSzGWl7tQuWTvYaefcI7jHe24WhUrzekjorUDMeVW5uk43TgkhK2fYZRkxPuEGogNVmS39/CA/AlazbIkZXVJmCqau8ivuSR58n4/IUv3IShViVQSnWtUYTHCRS9PLWQPIp3Gf8AosLkROvIXoiHWvcHAkM+Ysh74T/nW33B57zW0pLV818IdveCvnUOB0+HTLS+HpJ7uOm1Vfwe6UsRXVP3dDUjbvp/gEcwz0aY/S/CFLbFwH7DTcYy6wqCmV2BHb8ykvTDiNUIuFqsE4mzTGiR5YtbsLC1UfcIg0JkexBQI120C4jh6PfQQrcTNOBwRI7pqEU+jEenmc5rh6baY64SLXP6eIErdKxhLGlvNF9gSogtVkT7CjTtIJ+Ams3MXTPQPjTPnFQPJJDjYbFbNylQ67EQIgkownytTHUpGBaZTA1M8Rqhd43poqCkBj7GoLq2NGsUKSoZ0GmY/fzGehgw7aBGQxzj6jsYdcBiN6SAfKjMpmfmx5oD46JckeRyf4E0raat6wNkQSqZ6H6Ua8qLFyMwuO0K8nUPpEKfs1sr9x9Z6W1W/BUTCLuRTFTtB4Drr9a1hwOUsyeAbh2xUcNrw/M8Rqiy10xdTkvyaC5Tb2Np1Tj/AFx71Lrv5RrjKylKE0CgA7ibJuPzOV1GjkD3VEyC0kFEHUmPPQoiEQUd0xOtLlRmj18NQkdckk1x8llOSOmLFMTtPgSKI6BSgEJZSigSgPlPgggkPqBKJymIKsfgJgZ8OmKi8EOxTw/XRxGqGNNxTaHdYdPohKevudlA9lO4kbgmzvZ9EhZsk5zXHtDkUvfvSRptBXGrkYU2ictZIjecN0rjegFXg4Sur9lxMjCyIArS9WLq1wHX8se4jA7N18jfzXTJcO3R8s05GhLxJhg+DmLaNssBp1HGaiDiZWD3yRLNi9aoQ55ZCYeYnCT+hhZskuKHNoEhyBW92b0KQiRRk9r6RzGnHRfzqKeSgg/IA6UsLppaPwJZDqLbFEd3Pu4tHszojlDP01fbTGyQ1i9hRgdtLLR6B3o+MKihLTd0aKSnFqepShctrIG6Q6R1FS/42ZkdGAbhNYe5X6Tq9iVj2UH0WYU1n7TPceHNWI6KvMRYFkRXUodRwf5KXL9TJIbf6wcDpx0SDqSb1VOd/JxH9xtDyOGh4r2xAhZ7o+gvTwPiw16bwJrGzQXoO2LMM0LAHCESEBIyoHfYZzZKB8o9M0Nj6IDndH6afpuBdgS0DzXl8lJFoRVQrUq+6qS1YIFmop5Ik3bYegl5sGCIpBatps0ykNSqLE8yC49QkQmAl8DVXQxISWv0M/Up7jGpDZrBLUJS6ja43/W//9k=" alt="AuBit" class="logo-img" style="height:44px;" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="#que-es">Qué es AUBIT</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#hoy">Eventos</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#equipo">Equipo</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="#contacto" class="btn btn-gold">Empieza hoy</a>
+      </div>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══ MOBILE MENU ═══ -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose">&times;</button>
+    <a href="#que-es" class="mobile-link">Qué es AUBIT</a>
+    <a href="#servicios" class="mobile-link">Servicios</a>
+    <a href="#hoy" class="mobile-link">Eventos</a>
+    <a href="#blog" class="mobile-link">Blog</a>
+    <a href="#equipo" class="mobile-link">Equipo</a>
+    <a href="#contacto" class="mobile-link">Contacto</a>
+    <a href="#contacto" class="btn btn-gold">Empieza hoy</a>
+  </div>
+
+  <!-- ═══ HERO ═══ -->
+  <section id="inicio">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <i class="fas fa-shield-halved"></i>
+            Soberanía Financiera
+          </div>
+          <h1 class="hero-title">Tu patrimonio.<br><span class="gold">Tu control.</span></h1>
+          <p class="hero-sub">Protege y haz crecer tu patrimonio con oro, plata, bitcoin y educación financiera. Sin intermediarios. Sin depender de bancos. Tú decides.</p>
+          <div class="hero-btns">
+            <a href="#que-es" class="btn btn-gold">Descubre cómo <i class="fas fa-arrow-right"></i></a>
+            <a href="#servicios" class="btn btn-outline">Explorar servicios</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-number">500+</div>
+              <div class="hero-stat-label">Clientes</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-number">25+</div>
+              <div class="hero-stat-label">Años experiencia</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-number">100%</div>
+              <div class="hero-stat-label">Autocustodia</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ QUÉ ES AUBIT ═══ -->
+  <section id="que-es">
+    <div class="container">
+      <div class="que-es-grid">
+        <div class="reveal">
+          <div class="section-label">Qué es AUBIT</div>
+          <h2 class="section-title">Protegemos tu patrimonio con activos reales</h2>
+          <p class="section-subtitle">AUBIT nace en Euskadi con una misión clara: devolver a las personas el control sobre su dinero. Combinamos metales preciosos, bitcoin y formación para que construyas un patrimonio sólido, fuera del sistema bancario tradicional.</p>
+        </div>
+        <div class="pillar-cards reveal">
+          <div class="pillar-card">
+            <div class="pillar-icon"><i class="fas fa-coins"></i></div>
+            <div>
+              <div class="pillar-title">Metales Preciosos</div>
+              <div class="pillar-desc">Oro, plata y paladio físico. Activos con 5.000 años de historia que protegen contra la inflación y la devaluación monetaria.</div>
+            </div>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-icon"><i class="fab fa-bitcoin"></i></div>
+            <div>
+              <div class="pillar-title">Bitcoin &amp; Autocustodia</div>
+              <div class="pillar-desc">Compra bitcoin y aprende a custodiar tus propias claves. Si no tienes las llaves, no es tu bitcoin.</div>
+            </div>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-icon"><i class="fas fa-graduation-cap"></i></div>
+            <div>
+              <div class="pillar-title">Educación Financiera</div>
+              <div class="pillar-desc">Formaciones presenciales y online para que entiendas el dinero, la economía y tomes decisiones con conocimiento.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SERVICIOS ═══ -->
+  <section id="servicios">
+    <div class="container">
+      <div class="servicios-header reveal">
+        <div class="section-label">Servicios</div>
+        <h2 class="section-title">Todo lo que necesitas para tu soberanía financiera</h2>
+        <p class="section-subtitle">Desde la compra de metales preciosos hasta la autocustodia de bitcoin, te acompañamos en cada paso.</p>
+      </div>
+      <div class="servicios-grid">
+        <!-- Oro -->
+        <div class="servicio-card reveal">
+          <div class="servicio-icon" style="background:rgba(201,168,76,0.1);color:var(--gold);">
+            <i class="fas fa-coins"></i>
+          </div>
+          <h3>Compra de Oro 🪙</h3>
+          <p>Lingotes y monedas de oro de inversión con certificación y pureza garantizada. Desde 1 gramo hasta lingotes de 1 kg.</p>
+          <ul class="servicio-benefits">
+            <li>Oro de inversión (999,9 milésimas)</li>
+            <li>Exento de IVA</li>
+            <li>Entrega asegurada</li>
+            <li>Certificado de autenticidad</li>
+          </ul>
+          <a href="#contacto" class="servicio-btn" onclick="scrollToContact()">Solicitar información <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <!-- Plata -->
+        <div class="servicio-card reveal">
+          <div class="servicio-icon" style="background:rgba(170,170,170,0.1);color:var(--gray-light);">
+            <i class="fas fa-coins"></i>
+          </div>
+          <h3>Compra de Plata 🥈</h3>
+          <p>Monedas y lingotes de plata de inversión. El metal precioso más accesible con mayor potencial de revalorización.</p>
+          <ul class="servicio-benefits">
+            <li>Plata de inversión (999 milésimas)</li>
+            <li>Monedas y lingotes</li>
+            <li>Almacenamiento opcional</li>
+            <li>Liquidez garantizada</li>
+          </ul>
+          <a href="#contacto" class="servicio-btn" onclick="scrollToContact()">Solicitar información <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <!-- Paladio -->
+        <div class="servicio-card reveal">
+          <div class="servicio-icon" style="background:rgba(0,180,216,0.1);color:var(--cyan);">
+            <i class="fas fa-gem"></i>
+          </div>
+          <h3>Compra de Paladio 💎</h3>
+          <p>Metal precioso industrial con demanda creciente. Diversifica tu cartera de metales con un activo escaso y estratégico.</p>
+          <ul class="servicio-benefits">
+            <li>Paladio de inversión certificado</li>
+            <li>Alta demanda industrial</li>
+            <li>Diversificación de cartera</li>
+            <li>Asesoramiento personalizado</li>
+          </ul>
+          <a href="#contacto" class="servicio-btn" onclick="scrollToContact()">Solicitar información <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <!-- Bitcoin -->
+        <div class="servicio-card reveal">
+          <div class="servicio-icon" style="background:rgba(201,168,76,0.1);color:var(--gold);">
+            <i class="fab fa-bitcoin"></i>
+          </div>
+          <h3>Compra de Bitcoin ₿</h3>
+          <p>Compra bitcoin de forma segura con nuestro asesoramiento. Te ayudamos a adquirir satoshis sin complicaciones.</p>
+          <ul class="servicio-benefits">
+            <li>Compra segura y guiada</li>
+            <li>Sin KYC opciones disponibles</li>
+            <li>DCA (compra periódica)</li>
+            <li>Formación incluida</li>
+          </ul>
+          <a href="#contacto" class="servicio-btn" onclick="scrollToContact()">Solicitar información <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <!-- Autocustodia -->
+        <div class="servicio-card reveal">
+          <div class="servicio-icon" style="background:rgba(201,168,76,0.1);color:var(--gold);">
+            <i class="fas fa-shield-halved"></i>
+          </div>
+          <h3>Autocustodia Bitcoin 🔐</h3>
+          <p>Aprende a custodiar tus propios bitcoin. Te enseñamos a configurar hardware wallets y gestionar tus claves privadas.</p>
+          <ul class="servicio-benefits">
+            <li>Configuración hardware wallet</li>
+            <li>Gestión de semillas (seed)</li>
+            <li>Multisig avanzado</li>
+            <li>Sesión personalizada 1:1</li>
+          </ul>
+          <a href="#contacto" class="servicio-btn" onclick="scrollToContact()">Solicitar información <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <!-- Formaciones Online -->
+        <div class="servicio-card servicio-card--photo reveal">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&q=80" alt="Formación online" class="servicio-photo" />
+          <span class="servicio-badge">Online</span>
+          <div class="servicio-photo-body">
+            <h3>Formaciones Online 💻</h3>
+            <p>Cursos en formato digital para aprender a tu ritmo sobre dinero, economía, metales preciosos y bitcoin.</p>
+            <ul class="servicio-benefits">
+              <li>Acceso 24/7</li>
+              <li>Material actualizado</li>
+              <li>Comunidad privada</li>
+              <li>Certificado de finalización</li>
+            </ul>
+            <a href="#contacto" class="servicio-btn" onclick="scrollToContact()">Más información <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <!-- Minería -->
+        <div class="servicio-card servicio-card--photo reveal">
+          <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?w=600&q=80" alt="Minería de Bitcoin" class="servicio-photo" />
+          <span class="servicio-badge">Nuevo</span>
+          <div class="servicio-photo-body">
+            <h3>Minería de Bitcoin ⛏️</h3>
+            <p>Asesoramiento en minería de bitcoin. Desde la selección de hardware hasta la configuración y optimización energética.</p>
+            <ul class="servicio-benefits">
+              <li>Selección de hardware</li>
+              <li>Optimización energética</li>
+              <li>Pool mining guiado</li>
+              <li>ROI y rentabilidad</li>
+            </ul>
+            <a href="#contacto" class="servicio-btn" onclick="scrollToContact()">Más información <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ HOY / EVENTOS ═══ -->
+  <section id="hoy">
+    <div class="container">
+      <div class="hoy-header reveal">
+        <div class="section-label">Hoy</div>
+        <h2 class="section-title">Eventos y formaciones</h2>
+        <p class="section-subtitle">Aprende con nosotros en directo. Formaciones presenciales y online sobre economía, metales preciosos y bitcoin.</p>
+      </div>
+
+      <div class="eventos-grid--2col">
+        <!-- Evento próximo -->
+        <div class="evento-card reveal">
+          <div class="evento-date-bar">
+            <span class="evento-date"><i class="fas fa-calendar"></i> 1 Junio 2026</span>
+            <span class="evento-status evento-status--proximo">Próximo</span>
+          </div>
+          <div class="evento-body">
+            <h3>Soberanía Financiera — Junio 2026</h3>
+            <p>Una jornada completa para entender el dinero, proteger tu patrimonio y dar tus primeros pasos hacia la soberanía financiera con metales preciosos y bitcoin.</p>
+            <div class="evento-meta">
+              <span><i class="fas fa-map-marker-alt"></i> Donostia-San Sebastián</span>
+              <span><i class="fas fa-clock"></i> 10:00 - 18:00</span>
+              <span><i class="fas fa-users"></i> 30 plazas</span>
+            </div>
+            <div class="evento-temas">
+              <span class="evento-tema">Economía</span>
+              <span class="evento-tema">Oro y Plata</span>
+              <span class="evento-tema">Bitcoin</span>
+              <span class="evento-tema">Autocustodia</span>
+            </div>
+            <div class="countdown-wrapper" id="countdown">
+              <div class="countdown-item">
+                <span class="countdown-number" id="countDays">--</span>
+                <span class="countdown-label">Días</span>
+              </div>
+              <div class="countdown-item">
+                <span class="countdown-number" id="countHours">--</span>
+                <span class="countdown-label">Horas</span>
+              </div>
+              <div class="countdown-item">
+                <span class="countdown-number" id="countMins">--</span>
+                <span class="countdown-label">Min</span>
+              </div>
+              <div class="countdown-item">
+                <span class="countdown-number" id="countSecs">--</span>
+                <span class="countdown-label">Seg</span>
+              </div>
+            </div>
+            <button class="btn btn-gold" id="openModalBtn">Inscribirme <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </div>
+        <!-- Evento completado -->
+        <div class="evento-card evento-card--completado reveal">
+          <div class="evento-date-bar">
+            <span class="evento-date"><i class="fas fa-calendar"></i> Noviembre 2024</span>
+            <span class="evento-status evento-status--completado">Completado</span>
+          </div>
+          <div class="evento-body">
+            <h3>Introducción a la Soberanía Financiera</h3>
+            <p>Primera edición de nuestro evento insignia. Una jornada donde más de 25 asistentes descubrieron los fundamentos del ahorro en activos reales.</p>
+            <div class="evento-meta">
+              <span><i class="fas fa-map-marker-alt"></i> Donostia-San Sebastián</span>
+              <span><i class="fas fa-users"></i> 25 asistentes</span>
+            </div>
+            <div class="evento-temas">
+              <span class="evento-tema">Dinero fiat</span>
+              <span class="evento-tema">Metales preciosos</span>
+              <span class="evento-tema">Bitcoin básico</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Noticias -->
+      <div class="noticias-header reveal">
+        <h3 class="section-title" style="font-size:1.6rem;">Últimas noticias</h3>
+      </div>
+      <div class="noticias-grid reveal">
+        <div class="noticia-card">
+          <div class="noticia-date">Marzo 2026</div>
+          <h4>El oro supera los 3.000$/oz por primera vez</h4>
+          <p>El precio del oro alcanza máximos históricos impulsado por la incertidumbre geopolítica y la demanda de bancos centrales.</p>
+        </div>
+        <div class="noticia-card">
+          <div class="noticia-date">Febrero 2026</div>
+          <h4>Bitcoin y la reserva estratégica de EE.UU.</h4>
+          <p>El debate sobre una reserva estratégica de bitcoin en Estados Unidos cobra fuerza con nuevas propuestas legislativas.</p>
+        </div>
+        <div class="noticia-card">
+          <div class="noticia-date">Enero 2026</div>
+          <h4>AUBIT lanza nueva web y servicios</h4>
+          <p>Renovamos nuestra presencia digital con nuevos servicios de asesoramiento y una plataforma mejorada para nuestros clientes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MODAL INSCRIPCIÓN ═══ -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+      <button class="modal-close" id="modalCloseBtn">&times;</button>
+      <h3>Inscripción al evento</h3>
+      <p class="modal-sub">Soberanía Financiera — 1 Junio 2026, Donostia</p>
+      <form id="formInscripcion">
+        <div class="modal-field">
+          <label for="insc-nombre">Nombre completo *</label>
+          <input type="text" id="insc-nombre" name="nombre" required placeholder="Tu nombre" />
+        </div>
+        <div class="modal-field">
+          <label for="insc-email">Email *</label>
+          <input type="email" id="insc-email" name="email" required placeholder="tu@email.com" />
+        </div>
+        <div class="modal-field">
+          <label for="insc-telefono">Teléfono</label>
+          <input type="tel" id="insc-telefono" name="telefono" placeholder="+34 600 000 000" />
+        </div>
+        <button type="submit" class="modal-submit">Confirmar inscripción</button>
+      </form>
+      <div class="modal-success" id="modalSuccess">
+        <i class="fas fa-check-circle"></i>
+        <h3>¡Inscripción confirmada!</h3>
+        <p>Te hemos enviado un email con los detalles del evento. ¡Nos vemos el 1 de junio!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BLOG ═══ -->
+  <section id="blog">
+    <div class="container">
+      <div class="blog-header reveal">
+        <div class="section-label">Blog</div>
+        <h2 class="section-title">Aprende sobre soberanía financiera</h2>
+        <p class="section-subtitle">Artículos, guías y análisis para que tomes el control de tu dinero con conocimiento.</p>
+      </div>
+      <div class="blog-grid">
+        <div class="blog-card reveal">
+          <img src="https://images.unsplash.com/photo-1610375461246-83df859d849d?w=700&q=80" alt="Oro de inversión" class="blog-card-img" />
+          <div class="blog-card-body">
+            <h3>¿Por qué el oro sigue siendo el mejor refugio en 2026?</h3>
+            <p>Con el oro superando los 3.000$ la onza, analizamos por qué este metal precioso sigue siendo la protección más fiable contra la inflación y la incertidumbre.</p>
+            <div class="blog-card-meta">
+              <span>Marzo 2026 · 8 min</span>
+              <a href="#">Leer más <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="blog-card reveal">
+          <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=700&q=80" alt="Bitcoin autocustodia" class="blog-card-img" />
+          <div class="blog-card-body">
+            <h3>Guía completa de autocustodia de Bitcoin para principiantes</h3>
+            <p>Todo lo que necesitas saber para custodiar tus propios bitcoin: hardware wallets, semillas, multisig y buenas prácticas de seguridad.</p>
+            <div class="blog-card-meta">
+              <span>Febrero 2026 · 12 min</span>
+              <a href="#">Leer más <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="blog-card reveal">
+          <img src="https://images.unsplash.com/photo-1554260570-e9689a3418b8?w=700&q=80" alt="Inflación" class="blog-card-img" />
+          <div class="blog-card-body">
+            <h3>La inflación silenciosa: cómo proteger tu ahorro</h3>
+            <p>El poder adquisitivo del euro pierde valor cada año. Exploramos estrategias reales para proteger tu patrimonio con activos tangibles.</p>
+            <div class="blog-card-meta">
+              <span>Enero 2026 · 6 min</span>
+              <a href="#">Leer más <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONFIANZA ═══ -->
+  <section id="confianza">
+    <div class="container">
+      <div class="confianza-header reveal">
+        <div class="section-label">Por qué confiar en AUBIT</div>
+        <h2 class="section-title">Nuestros valores</h2>
+        <p class="section-subtitle">Construimos relaciones de confianza basadas en la transparencia, la educación y la experiencia.</p>
+      </div>
+      <div class="valores-grid">
+        <div class="valor-card reveal">
+          <div class="valor-icon"><i class="fas fa-graduation-cap"></i></div>
+          <h3>Educación</h3>
+          <p>Creemos que la mejor inversión es el conocimiento. Formamos para que tomes decisiones informadas.</p>
+        </div>
+        <div class="valor-card reveal">
+          <div class="valor-icon"><i class="fas fa-shield-halved"></i></div>
+          <h3>Seguridad</h3>
+          <p>Trabajamos con proveedores certificados y priorizamos la autocustodia. Tu patrimonio, bajo tu control.</p>
+        </div>
+        <div class="valor-card reveal">
+          <div class="valor-icon"><i class="fas fa-clock"></i></div>
+          <h3>Experiencia</h3>
+          <p>Más de 25 años en el sector de metales preciosos y activos reales avalan nuestra trayectoria.</p>
+        </div>
+        <div class="valor-card reveal">
+          <div class="valor-icon"><i class="fas fa-eye"></i></div>
+          <h3>Transparencia</h3>
+          <p>Sin letra pequeña. Precios claros, procesos transparentes y comunicación directa con cada cliente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ EQUIPO ═══ -->
+  <section id="equipo">
+    <div class="container">
+      <div class="equipo-header reveal">
+        <div class="section-label">Equipo</div>
+        <h2 class="section-title">Las personas detrás de AUBIT</h2>
+        <p class="section-subtitle">Un equipo comprometido con tu soberanía financiera, desde Euskadi para el mundo.</p>
+      </div>
+      <div class="equipo-grid">
+        <div class="equipo-card reveal">
+          <img class="equipo-avatar" src="/img/uxoa.jpg" alt="Uxoa" />
+          <div class="equipo-info">
+            <h3>Uxoa Urkizu</h3>
+            <div class="equipo-role">Co-fundadora &amp; Directora</div>
+            <p>Experta en metales preciosos con más de 20 años de experiencia en el sector. Apasionada por la educación financiera y la soberanía económica.</p>
+            <div class="equipo-tags">
+              <span class="equipo-tag">Metales preciosos</span>
+              <span class="equipo-tag">Educación financiera</span>
+              <span class="equipo-tag">Estrategia</span>
+            </div>
+          </div>
+        </div>
+        <div class="equipo-card reveal">
+          <img class="equipo-avatar" src="/img/dennis.jpg" alt="Dennis" />
+          <div class="equipo-info">
+            <h3>Dennis Terán</h3>
+            <div class="equipo-role">Co-fundador &amp; Tecnología</div>
+            <p>Ingeniero y bitcoiner. Especialista en autocustodia, seguridad digital y minería de bitcoin. Lleva más de 10 años en el ecosistema cripto.</p>
+            <div class="equipo-tags">
+              <span class="equipo-tag">Bitcoin</span>
+              <span class="equipo-tag">Autocustodia</span>
+              <span class="equipo-tag">Minería</span>
+              <span class="equipo-tag">Seguridad</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ RESEÑAS ═══ -->
+  <section id="resenas">
+    <div class="container">
+      <div class="resenas-header reveal">
+        <div class="section-label">Reseñas</div>
+        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+        <p class="section-subtitle">La confianza de nuestros clientes es nuestro mayor activo.</p>
+      </div>
+      <div class="resenas-grid">
+        <div class="resena-card reveal">
+          <div class="resena-stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="resena-texto">"Gracias a AUBIT entendí por qué el ahorro en euros pierde valor. Ahora tengo parte de mi patrimonio en oro y me siento mucho más tranquilo."</p>
+          <div class="resena-autor">
+            <div class="resena-autor-avatar">M</div>
+            <div class="resena-autor-info">
+              <span class="resena-autor-name">Mikel A.</span>
+              <span class="resena-autor-desc">Empresario, Donostia</span>
+            </div>
+          </div>
+        </div>
+        <div class="resena-card reveal">
+          <div class="resena-stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="resena-texto">"La formación presencial fue increíble. Dennis explica la autocustodia de bitcoin de forma que cualquiera puede entenderlo. 100% recomendable."</p>
+          <div class="resena-autor">
+            <div class="resena-autor-avatar">A</div>
+            <div class="resena-autor-info">
+              <span class="resena-autor-name">Ainara G.</span>
+              <span class="resena-autor-desc">Profesora, Bilbao</span>
+            </div>
+          </div>
+        </div>
+        <div class="resena-card reveal">
+          <div class="resena-stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="resena-texto">"Llevaba años queriendo comprar oro pero no sabía por dónde empezar. Uxoa me guió en todo el proceso. Trato excepcional y profesionalidad."</p>
+          <div class="resena-autor">
+            <div class="resena-autor-avatar">J</div>
+            <div class="resena-autor-info">
+              <span class="resena-autor-name">Jon I.</span>
+              <span class="resena-autor-desc">Ingeniero, Irun</span>
+            </div>
+          </div>
+        </div>
+        <div class="resena-card reveal">
+          <div class="resena-stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="resena-texto">"Compré plata para mis hijos como inversión a largo plazo. El proceso fue sencillo y la entrega impecable. Repetiré seguro."</p>
+          <div class="resena-autor">
+            <div class="resena-autor-avatar">L</div>
+            <div class="resena-autor-info">
+              <span class="resena-autor-name">Leire M.</span>
+              <span class="resena-autor-desc">Médica, Vitoria-Gasteiz</span>
+            </div>
+          </div>
+        </div>
+        <div class="resena-card reveal">
+          <div class="resena-stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="resena-texto">"El evento de noviembre me abrió los ojos. Ahora hago DCA en bitcoin y tengo mi hardware wallet configurada gracias a AUBIT."</p>
+          <div class="resena-autor">
+            <div class="resena-autor-avatar">I</div>
+            <div class="resena-autor-info">
+              <span class="resena-autor-name">Iker Z.</span>
+              <span class="resena-autor-desc">Desarrollador, Eibar</span>
+            </div>
+          </div>
+        </div>
+        <div class="resena-card reveal">
+          <div class="resena-stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="resena-texto">"Lo mejor de AUBIT es que no te venden humo. Te explican los riesgos, te educan, y luego tú decides. Así debería ser siempre."</p>
+          <div class="resena-autor">
+            <div class="resena-autor-avatar">N</div>
+            <div class="resena-autor-info">
+              <span class="resena-autor-name">Nerea B.</span>
+              <span class="resena-autor-desc">Abogada, Pamplona</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FAQ ═══ -->
+  <section id="faq">
+    <div class="container">
+      <div class="faq-header reveal">
+        <div class="section-label">FAQ</div>
+        <h2 class="section-title">Preguntas frecuentes</h2>
+        <p class="section-subtitle">Resolvemos las dudas más habituales sobre nuestros servicios.</p>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            ¿Qué es la soberanía financiera?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Es la capacidad de tomar el control total sobre tu patrimonio sin depender de intermediarios bancarios o financieros. Significa poseer activos reales (oro, plata, bitcoin) bajo tu custodia directa.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            ¿Es seguro comprar oro online?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Sí, siempre que lo hagas con un proveedor de confianza. En AUBIT trabajamos con refinerías certificadas LBMA y todos nuestros productos vienen con certificado de autenticidad. La entrega es asegurada.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            ¿Necesito conocimientos previos para las formaciones?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">No. Nuestras formaciones están diseñadas para todos los niveles. Empezamos desde cero y avanzamos progresivamente. Tanto si eres principiante como si ya tienes experiencia, encontrarás valor.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            ¿Qué es la autocustodia de bitcoin?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Autocustodia significa que tú controlas tus claves privadas, no un exchange ni un tercero. Utilizamos hardware wallets (dispositivos físicos) para que solo tú puedas acceder a tus bitcoin.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            ¿Cuál es la inversión mínima en oro?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Puedes empezar con lingotes desde 1 gramo. No necesitas grandes cantidades para empezar a proteger tu patrimonio con oro. Te asesoramos sobre la mejor opción según tu presupuesto.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            ¿El oro de inversión tiene IVA?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">No. El oro de inversión (lingotes y monedas que cumplan ciertos requisitos) está exento de IVA en la Unión Europea según la directiva 98/80/CE. La plata y el paladio sí tienen IVA.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            ¿Dónde opera AUBIT?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Nuestra sede está en Donostia-San Sebastián (Euskadi). Realizamos envíos de metales preciosos a toda España y nuestras formaciones online están disponibles para cualquier persona.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            ¿Cómo puedo contactar con vosotros?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Puedes escribirnos a Aubit.eus@gmail.com, llamarnos al +34 646 014 798, contactarnos por WhatsApp o usar el formulario de contacto de esta web. Respondemos en menos de 24 horas.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA FINAL ═══ -->
+  <section class="cta-final">
+    <div class="container reveal">
+      <div class="section-label">Da el primer paso</div>
+      <h2 class="section-title">¿Listo para tomar el control de tu patrimonio?</h2>
+      <p class="section-subtitle">Hablemos. Te ayudamos a diseñar tu estrategia de protección patrimonial con activos reales.</p>
+      <a href="#contacto" class="btn btn-gold">Contactar ahora <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACTO ═══ -->
+  <section id="contacto">
+    <div class="container">
+      <div class="contacto-grid">
+        <div class="contacto-info reveal">
+          <div class="section-label">Contacto</div>
+          <h3>Hablemos de tu patrimonio</h3>
+          <p>Cuéntanos en qué podemos ayudarte. Respondemos en menos de 24 horas.</p>
+          <div class="contacto-dato">
+            <div class="contacto-dato-icon"><i class="fas fa-envelope"></i></div>
+            <div class="contacto-dato-text">
+              <span>Email</span>
+              Aubit.eus@gmail.com
+            </div>
+          </div>
+          <div class="contacto-dato">
+            <div class="contacto-dato-icon"><i class="fas fa-phone"></i></div>
+            <div class="contacto-dato-text">
+              <span>Teléfono</span>
+              +34 646 014 798
+            </div>
+          </div>
+          <div class="contacto-dato">
+            <div class="contacto-dato-icon"><i class="fab fa-whatsapp"></i></div>
+            <div class="contacto-dato-text">
+              <span>WhatsApp</span>
+              +34 646 014 798
+            </div>
+          </div>
+          <div class="contacto-dato">
+            <div class="contacto-dato-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="contacto-dato-text">
+              <span>Ubicación</span>
+              Donostia-San Sebastián, Euskadi
+            </div>
+          </div>
+        </div>
+        <div class="form-wrapper reveal">
+          <form id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nombre">Nombre *</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre" />
+              </div>
+              <div class="form-group">
+                <label for="apellidos">Apellidos</label>
+                <input type="text" id="apellidos" name="apellidos" placeholder="Tus apellidos" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required placeholder="tu@email.com" />
+              </div>
+              <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="+34 600 000 000" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="asunto">Asunto *</label>
+              <select id="asunto" name="asunto" required>
+                <option value="">Selecciona un asunto</option>
+                <option value="Compra de oro">Compra de oro</option>
+                <option value="Compra de plata">Compra de plata</option>
+                <option value="Compra de paladio">Compra de paladio</option>
+                <option value="Compra de bitcoin">Compra de bitcoin</option>
+                <option value="Autocustodia bitcoin">Autocustodia bitcoin</option>
+                <option value="Formaciones">Formaciones</option>
+                <option value="Minería de bitcoin">Minería de bitcoin</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos en qué podemos ayudarte..."></textarea>
+            </div>
+            <button type="submit" class="form-submit">Enviar solicitud</button>
+          </form>
+          <div class="form-success" id="formSuccess">
+            <i class="fas fa-check-circle"></i>
+            <h3>¡Mensaje enviado!</h3>
+            <p>Gracias por contactar con AUBIT. Te responderemos en menos de 24 horas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#inicio" class="nav-logo">
+            <img src="data:image/jpeg;base64,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" alt="AuBit" class="logo-img" style="height:36px;" />
+          </a>
+          <p>Soberanía financiera desde Euskadi. Protege tu patrimonio con oro, plata, bitcoin y educación financiera.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Servicios</h4>
+          <ul>
+            <li><a href="#servicios">Compra de Oro</a></li>
+            <li><a href="#servicios">Compra de Plata</a></li>
+            <li><a href="#servicios">Compra de Paladio</a></li>
+            <li><a href="#servicios">Compra de Bitcoin</a></li>
+            <li><a href="#servicios">Autocustodia</a></li>
+            <li><a href="#servicios">Minería Bitcoin</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Formación</h4>
+          <ul>
+            <li><a href="#hoy">Eventos</a></li>
+            <li><a href="#servicios">Cursos online</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Empresa</h4>
+          <ul>
+            <li><a href="#que-es">Sobre AUBIT</a></li>
+            <li><a href="#equipo">Equipo</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#confianza">Valores</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 AUBIT. Todos los derechos reservados.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/aubit_eus/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://x.com/home?lang=es" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://t.me/+6VdhHxIX7XlhMjlk" target="_blank" rel="noopener" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+          <a href="https://www.youtube.com/@AuBIT-i4w" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══ WHATSAPP FLOAT ═══ -->
+  <a href="https://wa.me/34646014798" target="_blank" rel="noopener" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- ═══ JAVASCRIPT ═══ -->
+  <script>
+    // ── Navbar scroll effect ──
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 60) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // ── Hamburger menu toggle ──
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+
+    hamburgerBtn.addEventListener('click', function() {
+      mobileMenu.classList.add('open');
+    });
+
+    mobileClose.addEventListener('click', function() {
+      mobileMenu.classList.remove('open');
+    });
+
+    document.querySelectorAll('.mobile-menu a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // ── Scroll reveal with staggered animation ──
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry, index) {
+        if (entry.isIntersecting) {
+          setTimeout(function() {
+            entry.target.classList.add('active');
+          }, index * 100);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    revealElements.forEach(function(el) {
+      revealObserver.observe(el);
+    });
+
+    // ── scrollToContact function ──
+    function scrollToContact() {
+      document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ── Contact form submit (JSON to /api/contacto) ──
+    const contactForm = document.getElementById('contactForm');
+    const formSuccess = document.getElementById('formSuccess');
+
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('nombre').value.trim();
+      const apellidos = document.getElementById('apellidos').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+      const asunto = document.getElementById('asunto').value;
+      const mensaje = document.getElementById('mensaje').value.trim();
+
+      if (!nombre || !email || !asunto) {
+        alert('Por favor, completa los campos obligatorios (Nombre, Email y Asunto).');
+        return;
+      }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert('Por favor, introduce un email válido.');
+        return;
+      }
+
+      const submitBtn = contactForm.querySelector('.form-submit');
+      submitBtn.textContent = 'Enviando...';
+      submitBtn.disabled = true;
+
+      try {
+        const response = await fetch('/api/contacto', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre, apellidos, email, telefono, asunto, mensaje })
+        });
+        if (response.ok) {
+          contactForm.style.display = 'none';
+          formSuccess.style.display = 'block';
+        } else {
+          throw new Error('Error en el servidor');
+        }
+      } catch (error) {
+        submitBtn.textContent = 'Enviar solicitud';
+        submitBtn.disabled = false;
+        alert('Error al enviar. Comprueba tu conexión o escríbenos directamente a Aubit.eus@gmail.com');
+      }
+    });
+
+    // ── Countdown to 2026-06-01T10:00:00 ──
+    function updateCountdown() {
+      const target = new Date('2026-06-01T10:00:00').getTime();
+      const now = new Date().getTime();
+      const diff = target - now;
+
+      if (diff <= 0) {
+        document.getElementById('countDays').textContent = '0';
+        document.getElementById('countHours').textContent = '0';
+        document.getElementById('countMins').textContent = '0';
+        document.getElementById('countSecs').textContent = '0';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('countDays').textContent = days;
+      document.getElementById('countHours').textContent = hours;
+      document.getElementById('countMins').textContent = mins;
+      document.getElementById('countSecs').textContent = secs;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // ── Modal open/close/escape ──
+    const modalOverlay = document.getElementById('modalOverlay');
+    const openModalBtn = document.getElementById('openModalBtn');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+    openModalBtn.addEventListener('click', function() {
+      modalOverlay.classList.add('open');
+    });
+
+    modalCloseBtn.addEventListener('click', function() {
+      modalOverlay.classList.remove('open');
+    });
+
+    modalOverlay.addEventListener('click', function(e) {
+      if (e.target === modalOverlay) {
+        modalOverlay.classList.remove('open');
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modalOverlay.classList.contains('open')) {
+        modalOverlay.classList.remove('open');
+      }
+    });
+
+    // ── Inscription form submit (JSON to /api/inscripcion) ──
+    document.getElementById('formInscripcion').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('.modal-submit');
+      btn.textContent = 'Enviando...';
+      btn.disabled = true;
+      try {
+        const formData = new FormData(this);
+        const res = await fetch('/api/inscripcion', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nombre: formData.get('nombre'),
+            email: formData.get('email'),
+            telefono: formData.get('telefono'),
+            evento: 'Soberanía Financiera — Junio 2026'
+          })
+        });
+        if (res.ok) {
+          this.style.display = 'none';
+          document.getElementById('modalSuccess').style.display = 'flex';
+        } else {
+          throw new Error('Error del servidor');
+        }
+      } catch (err) {
+        btn.textContent = 'Confirmar inscripción';
+        btn.disabled = false;
+        alert('No se pudo enviar: ' + err.message + '\nEscríbenos a Aubit.eus@gmail.com');
+      }
+    });
+
+    // ── FAQ accordion ──
+    document.querySelectorAll('.faq-question').forEach(function(question) {
+      question.addEventListener('click', function() {
+        const item = this.parentElement;
+        const answer = item.querySelector('.faq-answer');
+        const isOpen = item.classList.contains('open');
+
+        // Close all
+        document.querySelectorAll('.faq-item').forEach(function(faqItem) {
+          faqItem.classList.remove('open');
+          faqItem.querySelector('.faq-answer').style.maxHeight = null;
+        });
+
+        // Open clicked if it was closed
+        if (!isOpen) {
+          item.classList.add('open');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // ── Active nav link on scroll ──
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', function() {
+      let current = '';
+      sections.forEach(function(section) {
+        const sectionTop = section.offsetTop - 120;
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(function(link) {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
