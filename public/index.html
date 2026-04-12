@@ -519,16 +519,24 @@
     .servicio-btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
       font-size: 0.85rem;
       font-weight: 600;
       color: var(--gold);
+      background: transparent;
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-family: var(--font-main);
       transition: var(--transition);
       cursor: pointer;
     }
 
     .servicio-btn:hover {
       gap: 12px;
+      background: rgba(201,168,76,0.08);
+      border-color: var(--gold);
     }
 
     .servicio-card--photo {
