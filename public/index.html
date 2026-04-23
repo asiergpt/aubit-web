@@ -1929,6 +1929,24 @@
               <span class="evento-tema">Inmobiliario</span>
               <span class="evento-tema">Formación</span>
             </div>
+            <div class="countdown-wrapper" id="countdown" data-target="2026-05-16T10:00:00+02:00" style="margin:20px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;text-align:center;">
+              <div class="countdown-item" style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:14px 6px;">
+                <div class="countdown-value" id="cd-days" style="font-size:28px;font-weight:700;color:var(--gold);line-height:1;">00</div>
+                <div class="countdown-label" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-top:6px;">Días</div>
+              </div>
+              <div class="countdown-item" style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:14px 6px;">
+                <div class="countdown-value" id="cd-hours" style="font-size:28px;font-weight:700;color:var(--gold);line-height:1;">00</div>
+                <div class="countdown-label" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-top:6px;">Horas</div>
+              </div>
+              <div class="countdown-item" style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:14px 6px;">
+                <div class="countdown-value" id="cd-mins" style="font-size:28px;font-weight:700;color:var(--gold);line-height:1;">00</div>
+                <div class="countdown-label" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-top:6px;">Min</div>
+              </div>
+              <div class="countdown-item" style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:14px 6px;">
+                <div class="countdown-value" id="cd-secs" style="font-size:28px;font-weight:700;color:var(--gold);line-height:1;">00</div>
+                <div class="countdown-label" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-top:6px;">Seg</div>
+              </div>
+            </div>
             <button class="btn btn-gold" id="openModalBtn">Inscribirme <i class="fas fa-arrow-right"></i></button>
           </div>
         </div>
@@ -1957,6 +1975,25 @@
         <!-- mcp:eventos:item:introduccion-a-la-soberania-financiera:end -->
       </div>
     </div>
+    <script>
+      (function(){
+        var el=document.getElementById('countdown');
+        if(!el) return;
+        var target=new Date(el.getAttribute('data-target')).getTime();
+        var d=document.getElementById('cd-days'),h=document.getElementById('cd-hours'),m=document.getElementById('cd-mins'),s=document.getElementById('cd-secs');
+        function pad(n){return n<10?'0'+n:n}
+        function tick(){
+          var now=Date.now();var diff=target-now;
+          if(diff<=0){d.textContent='00';h.textContent='00';m.textContent='00';s.textContent='00';return}
+          var days=Math.floor(diff/86400000);
+          var hours=Math.floor((diff%86400000)/3600000);
+          var mins=Math.floor((diff%3600000)/60000);
+          var secs=Math.floor((diff%60000)/1000);
+          d.textContent=pad(days);h.textContent=pad(hours);m.textContent=pad(mins);s.textContent=pad(secs);
+        }
+        tick();setInterval(tick,1000);
+      })();
+    </script>
   </section>
   <!-- mcp:eventos:end -->
 
