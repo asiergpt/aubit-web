@@ -1929,24 +1929,6 @@
               <span class="evento-tema">Inmobiliario</span>
               <span class="evento-tema">Formación</span>
             </div>
-            <div class="countdown-wrapper" id="countdown" data-target="2026-05-16T10:00:00+02:00">
-              <div class="countdown-item">
-                <span class="countdown-number" id="countDays">--</span>
-                <span class="countdown-label">Días</span>
-              </div>
-              <div class="countdown-item">
-                <span class="countdown-number" id="countHours">--</span>
-                <span class="countdown-label">Horas</span>
-              </div>
-              <div class="countdown-item">
-                <span class="countdown-number" id="countMins">--</span>
-                <span class="countdown-label">Min</span>
-              </div>
-              <div class="countdown-item">
-                <span class="countdown-number" id="countSecs">--</span>
-                <span class="countdown-label">Seg</span>
-              </div>
-            </div>
             <button class="btn btn-gold" id="openModalBtn">Inscribirme <i class="fas fa-arrow-right"></i></button>
           </div>
         </div>
@@ -1975,31 +1957,6 @@
         <!-- mcp:eventos:item:introduccion-a-la-soberania-financiera:end -->
       </div>
     </div>
-    <script>
-      (function(){
-        var TARGET = new Date('2026-05-16T10:00:00+02:00').getTime();
-        function pad(n){ return n < 10 ? '0' + n : '' + n; }
-        function tick(){
-          var now = Date.now();
-          var diff = TARGET - now;
-          if (diff < 0) diff = 0;
-          var d = Math.floor(diff / 86400000);
-          var h = Math.floor((diff % 86400000) / 3600000);
-          var m = Math.floor((diff % 3600000) / 60000);
-          var s = Math.floor((diff % 60000) / 1000);
-          var dEl = document.getElementById('countDays');
-          var hEl = document.getElementById('countHours');
-          var mEl = document.getElementById('countMins');
-          var sEl = document.getElementById('countSecs');
-          if (dEl) dEl.textContent = d;
-          if (hEl) hEl.textContent = pad(h);
-          if (mEl) mEl.textContent = pad(m);
-          if (sEl) sEl.textContent = pad(s);
-        }
-        tick();
-        setInterval(tick, 1000);
-      })();
-    </script>
   </section>
   <!-- mcp:eventos:end -->
 
