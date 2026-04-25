@@ -1949,7 +1949,7 @@
                 <div class="countdown-label" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-top:6px;">Seg</div>
               </div>
             </div>
-            <button class="btn btn-gold" id="openModalBtn">Inscribirme <i class="fas fa-arrow-right"></i></button>
+            <a href="#contacto" class="btn btn-gold" id="openModalBtn" data-evento="Soberanía Financiera — Mayo 16 2026">Inscribirme <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         <!-- mcp:eventos:item:soberania-financiera-junio-2026:end -->
@@ -1980,20 +1980,42 @@
     <script>
       (function(){
         var el=document.getElementById('countdown');
-        if(!el) return;
-        var target=new Date(el.getAttribute('data-target')).getTime();
-        var d=document.getElementById('cd-days'),h=document.getElementById('cd-hours'),m=document.getElementById('cd-mins'),s=document.getElementById('cd-secs');
-        function pad(n){return n<10?'0'+n:n}
-        function tick(){
-          var now=Date.now();var diff=target-now;
-          if(diff<=0){d.textContent='00';h.textContent='00';m.textContent='00';s.textContent='00';return}
-          var days=Math.floor(diff/86400000);
-          var hours=Math.floor((diff%86400000)/3600000);
-          var mins=Math.floor((diff%3600000)/60000);
-          var secs=Math.floor((diff%60000)/1000);
-          d.textContent=pad(days);h.textContent=pad(hours);m.textContent=pad(mins);s.textContent=pad(secs);
+        if(el){
+          var target=new Date(el.getAttribute('data-target')).getTime();
+          var d=document.getElementById('cd-days'),h=document.getElementById('cd-hours'),m=document.getElementById('cd-mins'),s=document.getElementById('cd-secs');
+          function pad(n){return n<10?'0'+n:n}
+          function tick(){
+            var now=Date.now();var diff=target-now;
+            if(diff<=0){d.textContent='00';h.textContent='00';m.textContent='00';s.textContent='00';return}
+            var days=Math.floor(diff/86400000);
+            var hours=Math.floor((diff%86400000)/3600000);
+            var mins=Math.floor((diff%3600000)/60000);
+            var secs=Math.floor((diff%60000)/1000);
+            d.textContent=pad(days);h.textContent=pad(hours);m.textContent=pad(mins);s.textContent=pad(secs);
+          }
+          tick();setInterval(tick,1000);
         }
-        tick();setInterval(tick,1000);
+        var btn=document.getElementById('openModalBtn');
+        if(btn){
+          btn.addEventListener('click',function(e){
+            e.preventDefault();
+            var nombreEvento=btn.getAttribute('data-evento')||'Soberanía Financiera — Mayo 16 2026';
+            var sel=document.getElementById('asunto');
+            var msg=document.getElementById('mensaje');
+            var bannerName=document.getElementById('evento-banner-name');
+            if(bannerName){bannerName.textContent=nombreEvento;}
+            if(sel){
+              sel.value='Inscripción a Evento';
+              sel.dispatchEvent(new Event('change',{bubbles:true}));
+            }
+            if(msg && !msg.value){
+              msg.value='Quiero inscribirme al evento: '+nombreEvento+'.\n\nNº de participantes (1-3): \nNombres y apellidos de acompañantes (si los hay): ';
+            }
+            var contacto=document.getElementById('contacto');
+            if(contacto){contacto.scrollIntoView({behavior:'smooth',block:'start'});}
+            setTimeout(function(){var n=document.getElementById('nombre');if(n){n.focus();}},700);
+          });
+        }
       })();
     </script>
   </section>
