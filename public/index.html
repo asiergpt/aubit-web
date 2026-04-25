@@ -2268,7 +2268,7 @@
       <div class="faq-header reveal">
         <div class="section-label">FAQ</div>
         <h2 class="section-title">Preguntas frecuentes</h2>
-        <p class="section-subtitle">Resolvemos las dudas más habituales sobre nuestros servicios.</p>
+        <p class="section-subtitle">Resolvemos las dudas más habituales sobre nuestros servicios. Pulsa una pregunta para ver la respuesta.</p>
       </div>
       <div class="faq-grid">
                 <!-- mcp:faq:item:que-es-la-soberania-financiera:start -->
@@ -2361,6 +2361,33 @@
         <!-- mcp:faq:item:como-puedo-contactar-con-vosotros:end -->
       </div>
     </div>
+    <style>
+      #faq .faq-item{cursor:pointer;border:1px solid rgba(201,168,76,0.15);border-radius:12px;margin-bottom:12px;background:rgba(201,168,76,0.03);overflow:hidden;transition:border-color .25s,background .25s;}
+      #faq .faq-item:hover{border-color:rgba(201,168,76,0.4);}
+      #faq .faq-item.faq-open{border-color:rgba(201,168,76,0.5);background:rgba(201,168,76,0.06);}
+      #faq .faq-question{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;font-weight:600;font-size:16px;gap:14px;}
+      #faq .faq-question .fa-chevron-down{transition:transform .3s ease;color:var(--gold,#c9a84c);font-size:14px;flex-shrink:0;}
+      #faq .faq-item.faq-open .faq-question .fa-chevron-down{transform:rotate(180deg);}
+      #faq .faq-answer{max-height:0;overflow:hidden;transition:max-height .35s ease;opacity:0;}
+      #faq .faq-item.faq-open .faq-answer{max-height:500px;opacity:1;}
+      #faq .faq-answer-inner{padding:0 22px 20px;line-height:1.65;color:var(--gray,#bfbfbf);}
+    </style>
+    <script>
+      (function(){
+        function init(){
+          var items=document.querySelectorAll('#faq .faq-item');
+          items.forEach(function(item){
+            var q=item.querySelector('.faq-question');
+            if(!q) return;
+            q.addEventListener('click',function(e){
+              e.preventDefault();
+              item.classList.toggle('faq-open');
+            });
+          });
+        }
+        if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+      })();
+    </script>
   </section>
   <!-- mcp:faq:end -->
 
