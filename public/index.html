@@ -1726,6 +1726,101 @@
         </div>
       </div>
     </div>
+
+    <!-- Widgets flotantes globales (WhatsApp + Bot FAQ) -->
+    <style>
+      .aubit-float-wa,.aubit-float-faq{position:fixed;right:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:9998;box-shadow:0 8px 24px rgba(0,0,0,0.35);transition:transform .2s ease,box-shadow .2s ease;text-decoration:none;border:none;}
+      .aubit-float-wa:hover,.aubit-float-faq:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,0.45);}
+      .aubit-float-wa{bottom:24px;width:62px;height:62px;background:#25D366;color:#fff;font-size:32px;animation:waPulse 2.4s ease-in-out infinite;}
+      .aubit-float-wa i{color:#fff;}
+      @keyframes waPulse{0%,100%{box-shadow:0 8px 24px rgba(37,211,102,0.4);}50%{box-shadow:0 8px 24px rgba(37,211,102,0.85),0 0 0 12px rgba(37,211,102,0);}}
+      .aubit-float-faq{bottom:100px;width:56px;height:56px;background:#c9a84c;color:#0a0a0a;font-size:24px;font-weight:700;border:2px solid #0a0a0a;}
+      .aubit-float-faq i{color:#0a0a0a;}
+      .aubit-faq-label{position:absolute;right:68px;top:50%;transform:translateY(-50%);background:#0a0a0a;color:#c9a84c;padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600;white-space:nowrap;border:1px solid rgba(201,168,76,0.4);opacity:0;pointer-events:none;transition:opacity .2s;}
+      .aubit-float-faq:hover .aubit-faq-label{opacity:1;}
+      .aubit-faq-panel{position:fixed;bottom:165px;right:24px;width:340px;max-width:calc(100vw - 48px);max-height:65vh;background:#0f0f0f;border:1px solid rgba(201,168,76,0.4);border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,0.6);z-index:9999;display:none;flex-direction:column;overflow:hidden;}
+      .aubit-faq-panel.open{display:flex;animation:faqIn .25s ease;}
+      @keyframes faqIn{from{opacity:0;transform:translateY(15px);}to{opacity:1;transform:translateY(0);}}
+      .aubit-faq-head{padding:16px 18px;background:linear-gradient(135deg,#c9a84c,#b8973f);color:#0a0a0a;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:space-between;}
+      .aubit-faq-head .aubit-faq-close{background:transparent;border:none;color:#0a0a0a;font-size:20px;cursor:pointer;line-height:1;padding:0 4px;}
+      .aubit-faq-list{overflow-y:auto;padding:8px 0;flex:1;}
+      .aubit-faq-q{padding:12px 18px;border-bottom:1px solid rgba(201,168,76,0.1);cursor:pointer;color:#fff;font-size:14px;transition:background .15s;display:flex;justify-content:space-between;align-items:center;gap:8px;}
+      .aubit-faq-q:hover{background:rgba(201,168,76,0.08);}
+      .aubit-faq-q .chev{color:#c9a84c;font-size:12px;transition:transform .25s;}
+      .aubit-faq-q.open .chev{transform:rotate(180deg);}
+      .aubit-faq-a{padding:0 18px;max-height:0;overflow:hidden;color:#bbb;font-size:13px;line-height:1.55;transition:max-height .3s ease,padding .3s ease;}
+      .aubit-faq-q.open + .aubit-faq-a{max-height:400px;padding:4px 18px 14px 18px;}
+      .aubit-faq-foot{padding:12px 18px;background:#0a0a0a;border-top:1px solid rgba(201,168,76,0.2);font-size:12px;color:#888;text-align:center;}
+      .aubit-faq-foot a{color:#25D366;font-weight:600;text-decoration:none;}
+      @media (max-width:480px){.aubit-faq-panel{right:12px;bottom:155px;width:calc(100vw - 24px);} .aubit-float-wa,.aubit-float-faq{right:16px;}}
+    </style>
+
+    <a class="aubit-float-wa" href="https://wa.me/34646014798?text=Hola%2C%20vengo%20de%20aubit.es%20y%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n..." target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <button class="aubit-float-faq" id="aubitFaqBtn" aria-label="Preguntas frecuentes" type="button">
+      <i class="fas fa-question"></i>
+      <span class="aubit-faq-label">¿Tienes una duda?</span>
+    </button>
+
+    <div class="aubit-faq-panel" id="aubitFaqPanel" role="dialog" aria-label="Preguntas frecuentes">
+      <div class="aubit-faq-head">
+        <span><i class="fas fa-comments"></i> &nbsp;¿En qué te ayudamos?</span>
+        <button class="aubit-faq-close" id="aubitFaqClose" aria-label="Cerrar">×</button>
+      </div>
+      <div class="aubit-faq-list">
+        <div class="aubit-faq-q">¿Cuándo es el próximo evento?<i class="fas fa-chevron-down chev"></i></div>
+        <div class="aubit-faq-a">El próximo evento <strong>"Soberanía Financiera"</strong> es el <strong>16 de Mayo de 2026</strong> en Donostia-San Sebastián (Hotel Palacio de Aiete), de 10:00 a 12:00. Es <strong>gratuito</strong> con plazas limitadas. Pulsa "Inscribirme" en la sección Eventos.</div>
+
+        <div class="aubit-faq-q">¿Las formaciones son online o presenciales?<i class="fas fa-chevron-down chev"></i></div>
+        <div class="aubit-faq-a">Ambas. Los eventos abiertos son <strong>presenciales en Donostia</strong>. Las consultas y asesorías personalizadas las hacemos por <strong>videollamada</strong>, así atendemos a clientes de toda España.</div>
+
+        <div class="aubit-faq-q">¿Cuánto cuesta el evento de Mayo?<i class="fas fa-chevron-down chev"></i></div>
+        <div class="aubit-faq-a">El evento abierto del 16 de mayo es <strong>gratuito</strong>. Las formaciones individuales personalizadas tienen tarifa según contenido — escríbenos por WhatsApp para presupuesto sin compromiso.</div>
+
+        <div class="aubit-faq-q">¿Vendéis bitcoin u oro directamente?<i class="fas fa-chevron-down chev"></i></div>
+        <div class="aubit-faq-a">No somos broker. <strong>Te asesoramos y guiamos</strong> en el proceso de compra, autocustodia y uso de bitcoin y metales preciosos para que lo hagas de forma segura y soberana, sin intermediarios innecesarios.</div>
+
+        <div class="aubit-faq-q">¿Cómo me inscribo al próximo evento?<i class="fas fa-chevron-down chev"></i></div>
+        <div class="aubit-faq-a">En la sección <strong>"Eventos"</strong> pulsa el botón dorado <strong>"Inscribirme"</strong>. Te llevará al formulario de inscripción con el evento ya preseleccionado. Solo tienes que completar tus datos.</div>
+
+        <div class="aubit-faq-q">¿Hacéis acompañamiento en autocustodia bitcoin?<i class="fas fa-chevron-down chev"></i></div>
+        <div class="aubit-faq-a">Sí. Te enseñamos a configurar tu <strong>hardware wallet</strong>, a gestionar tus claves privadas con seguridad y a custodiar tus bitcoins <strong>sin depender de terceros</strong>. "Not your keys, not your coins".</div>
+
+        <div class="aubit-faq-q">¿Atendéis fuera de Euskadi?<i class="fas fa-chevron-down chev"></i></div>
+        <div class="aubit-faq-a">Sí. Por videollamada atendemos clientes de <strong>toda España</strong>. Los eventos presenciales son actualmente en Donostia, pero estamos abiertos a impartirlos en otras ciudades — escríbenos si te interesa organizar uno.</div>
+
+        <div class="aubit-faq-q">¿Cuánto tarda Dennis en responder?<i class="fas fa-chevron-down chev"></i></div>
+        <div class="aubit-faq-a">Por <strong>WhatsApp en menos de 2 horas</strong> en horario laboral. Por email/formulario en <strong>menos de 24 horas</strong>. Si es urgente, siempre WhatsApp.</div>
+      </div>
+      <div class="aubit-faq-foot">
+        ¿No encuentras tu pregunta? &nbsp;<a href="https://wa.me/34646014798?text=Hola%2C%20tengo%20una%20pregunta..." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Escríbenos</a>
+      </div>
+    </div>
+
+    <script>
+      (function(){
+        var btn=document.getElementById('aubitFaqBtn');
+        var panel=document.getElementById('aubitFaqPanel');
+        var closeBtn=document.getElementById('aubitFaqClose');
+        if(!btn||!panel) return;
+        function toggle(open){
+          if(open===undefined){panel.classList.toggle('open');}
+          else if(open){panel.classList.add('open');}
+          else{panel.classList.remove('open');}
+        }
+        btn.addEventListener('click',function(e){e.stopPropagation();toggle();});
+        if(closeBtn){closeBtn.addEventListener('click',function(){toggle(false);});}
+        document.addEventListener('click',function(e){
+          if(panel.classList.contains('open') && !panel.contains(e.target) && e.target!==btn && !btn.contains(e.target)){toggle(false);}
+        });
+        var qs=panel.querySelectorAll('.aubit-faq-q');
+        qs.forEach(function(q){
+          q.addEventListener('click',function(){q.classList.toggle('open');});
+        });
+      })();
+    </script>
   </section>
   <!-- mcp:hero:end -->
 
