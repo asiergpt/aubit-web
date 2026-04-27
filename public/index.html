@@ -2198,15 +2198,20 @@
       var btn=document.getElementById('nlBtnText');
       if(!email){return false;}
       btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Enviando...';
-      fetch('https://formspree.io/f/aubit-newsletter',{
+      fetch('https://mcp.aubit.es/contacto',{
         method:'POST',
-        headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify({email:email,_subject:'Nueva suscripción newsletter AUBIT'})
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          nombre:'Suscriptor Newsletter',
+          email:email,
+          asunto:'Newsletter',
+          mensaje:'Suscripción al newsletter desde aubit.es'
+        })
       })
       .then(function(r){return r.json();})
       .then(function(d){
         msg.style.display='block';
-        if(d.ok){
+        if(d.ok||d.success||d.id){
           msg.className='nl-msg ok';
           msg.innerHTML='<i class="fas fa-check-circle"></i> ¡Suscrito! Bienvenido a la comunidad AUBIT.';
           btn.innerHTML='Suscribirme <i class="fas fa-arrow-right"></i>';
