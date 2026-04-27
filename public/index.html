@@ -1827,32 +1827,6 @@
             q.addEventListener('click',function(){q.classList.toggle('open');});
           });
         }
-
-        // Renombra "Blog" -> "Newsletter" en cualquier link del menú (escritorio y móvil)
-        function renameBlog(){
-          var links=document.querySelectorAll('a[href="#blog"], a[href$="#blog"]');
-          links.forEach(function(a){
-            // preserva iconos; sustituye solo nodos de texto que digan "Blog"
-            var changed=false;
-            a.childNodes.forEach(function(n){
-              if(n.nodeType===3){
-                var t=n.nodeValue;
-                if(/blog/i.test(t)){
-                  n.nodeValue=t.replace(/blog/gi,'Newsletter');
-                  changed=true;
-                }
-              }
-            });
-            if(!changed){
-              var raw=a.textContent;
-              if(/blog/i.test(raw)){a.textContent=raw.replace(/blog/gi,'Newsletter');}
-            }
-          });
-        }
-        if(document.readyState!=='loading'){renameBlog();}
-        else{document.addEventListener('DOMContentLoaded',renameBlog);}
-        setTimeout(renameBlog,500);
-        setTimeout(renameBlog,1500);
       })();
     </script>
   </section>
