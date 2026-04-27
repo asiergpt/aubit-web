@@ -1708,17 +1708,19 @@
 
   <!-- ═══ HERO ═══ -->
   <!-- mcp:hero:start -->
-  <section id="inicio" style="background-image:url('/img/equipo-kv9Tc8R.jpeg') !important;background-size:cover !important;background-position:center !important;background-repeat:no-repeat !important;">
-    <div class="hero-bg"></div>
-    <div class="container">
+  <section id="inicio" style="position:relative;background-image:url('/img/equipo-kv9Tc8R.jpeg') !important;background-size:cover !important;background-position:center 30% !important;background-repeat:no-repeat !important;">
+    <!-- Overlay oscuro para contraste profesional -->
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(5,5,5,0.72) 0%,rgba(5,5,5,0.45) 60%,rgba(5,5,5,0.25) 100%);z-index:0;pointer-events:none;"></div>
+    <div class="hero-bg" style="display:none;"></div>
+    <div class="container" style="position:relative;z-index:1;">
       <div class="hero-grid">
         <div class="hero-content">
           <div class="hero-badge">
             <i class="fas fa-shield-halved"></i>
             Soberanía Financiera
           </div>
-          <h1 class="hero-title">Protege tu patrimonio.<br>Entiende el sistema.<br><span class="gold">Toma el control.</span></h1>
-          <p class="hero-sub">AUBIT te acompaña en el camino hacia la libertad financiera real. Metales preciosos, Bitcoin y educación práctica para que tu dinero trabaje para ti — no para el sistema.</p>
+          <h1 class="hero-title" style="text-shadow:0 2px 16px rgba(0,0,0,0.5);">Protege tu patrimonio.<br>Entiende el sistema.<br><span class="gold">Toma el control.</span></h1>
+          <p class="hero-sub" style="text-shadow:0 1px 8px rgba(0,0,0,0.6);">AUBIT te acompaña en el camino hacia la libertad financiera real. Metales preciosos, Bitcoin y educación práctica para que tu dinero trabaje para ti — no para el sistema.</p>
           <div class="hero-btns">
             <a href="#servicios" class="btn btn-gold"><i class="fas fa-bars"></i> Ver servicios</a>
             <a href="#contacto" class="btn btn-outline"><i class="fas fa-calendar-check"></i> Reservar / Contactar</a>
@@ -1728,8 +1730,7 @@
     </div>
 
     <style>
-      #inicio { background-image: url('/img/equipo-kv9Tc8R.jpeg') !important; background-size: cover !important; background-position: center !important; }
-      #inicio .hero-bg { background-image: none !important; }
+      #inicio { background-image: url('/img/equipo-kv9Tc8R.jpeg') !important; background-size: cover !important; background-position: center 30% !important; }
       .aubit-float-wa,.aubit-float-faq{position:fixed;right:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:9998;box-shadow:0 8px 24px rgba(0,0,0,0.35);transition:transform .2s ease,box-shadow .2s ease;text-decoration:none;border:none;}
       .aubit-float-wa:hover,.aubit-float-faq:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,0.45);}
       .aubit-float-wa{bottom:24px;width:62px;height:62px;background:#25D366;color:#fff;font-size:32px;animation:waPulse 2.4s ease-in-out infinite;}
