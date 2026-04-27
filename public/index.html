@@ -2142,28 +2142,72 @@
 
   <!-- ═══ BLOG ═══ -->
   <!-- mcp:blog:start -->
-  <section id="blog" style="display:none;" aria-hidden="true"></section>
-  <script>
-    (function(){
-      // Cambiar "Blog" por "Newsletter" en el menú de navegación
-      document.querySelectorAll('nav a, header a, .nav a, .navbar a, .menu a').forEach(function(a){
-        if(a.textContent.trim() === 'Blog'){
-          a.textContent = 'Newsletter';
-          a.href = '#newsletter';
-        }
-      });
-      // También al cargar si el DOM no está listo
-      document.addEventListener('DOMContentLoaded', function(){
-        document.querySelectorAll('nav a, header a, .nav a, .navbar a, .menu a').forEach(function(a){
-          if(a.textContent.trim() === 'Blog'){
-            a.textContent = 'Newsletter';
-            a.href = '#newsletter';
+  <section id="blog" style="padding:80px 0;background:linear-gradient(180deg,#0a0a0a 0%,#0f0f0f 100%);">
+    <div class="container">
+      <div style="max-width:880px;margin:0 auto;text-align:center;">
+        <div class="section-label" style="color:#c9a84c;font-size:12px;letter-spacing:4px;font-weight:700;text-transform:uppercase;">Newsletter</div>
+        <h2 class="section-title" style="font-size:36px;font-weight:800;color:#fff;margin:14px 0 10px;line-height:1.15;">No te pierdas el siguiente movimiento del mercado</h2>
+        <p class="section-subtitle" style="color:#bbb;font-size:16px;line-height:1.6;max-width:680px;margin:0 auto 32px;">
+          Recibe en tu email análisis de mercado, novedades sobre oro, plata y Bitcoin, y avisos de nuestros próximos eventos y formaciones. Sin spam — solo lo importante.
+        </p>
+
+        <form id="newsletterForm" style="display:flex;flex-direction:column;gap:14px;max-width:560px;margin:0 auto;background:rgba(201,168,76,0.04);border:1px solid rgba(201,168,76,0.25);border-radius:18px;padding:28px 24px;box-shadow:0 12px 36px rgba(0,0,0,0.35);">
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <input type="email" id="newsletter-email" name="email" required placeholder="tu@email.com" style="flex:1 1 240px;min-width:220px;padding:14px 16px;background:#0a0a0a;border:1px solid rgba(201,168,76,0.3);border-radius:10px;color:#fff;font-size:15px;outline:none;" />
+            <button type="submit" style="flex:0 0 auto;padding:14px 24px;background:#c9a84c;color:#0a0a0a;border:none;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;letter-spacing:0.5px;text-transform:uppercase;transition:transform .15s,box-shadow .15s;">Suscribirme</button>
+          </div>
+          <label for="newsletter-privacidad" style="display:flex;align-items:flex-start;gap:10px;color:#999;font-size:12px;line-height:1.5;text-align:left;margin:0;cursor:pointer;font-weight:400;">
+            <input type="checkbox" id="newsletter-privacidad" name="acepto_privacidad" required style="margin-top:2px;flex-shrink:0;width:15px;height:15px;accent-color:#c9a84c;cursor:pointer;" />
+            <span>He leído y acepto las <a href="/aviso-legal-aubit.pdf" target="_blank" rel="noopener" style="color:#c9a84c;text-decoration:underline;">políticas de privacidad</a> de Aubit y consiento recibir comunicaciones por email sobre noticias, mercado, eventos y formaciones. Puedo darme de baja en cualquier momento.</span>
+          </label>
+        </form>
+
+        <div id="newsletterSuccess" style="display:none;margin-top:16px;color:#25D366;font-weight:600;">
+          <i class="fas fa-check-circle"></i> &nbsp;¡Hecho! Estás suscrito a la newsletter de Aubit.
+        </div>
+
+        <div style="margin-top:30px;display:flex;justify-content:center;gap:24px;flex-wrap:wrap;color:#666;font-size:12px;letter-spacing:1px;text-transform:uppercase;">
+          <span><i class="fas fa-shield-halved" style="color:#c9a84c;"></i> &nbsp;Sin spam</span>
+          <span><i class="fas fa-envelope-open-text" style="color:#c9a84c;"></i> &nbsp;1-2 emails al mes</span>
+          <span><i class="fas fa-times-circle" style="color:#c9a84c;"></i> &nbsp;Baja con un clic</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function(){
+        var f=document.getElementById('newsletterForm');
+        if(!f) return;
+        f.addEventListener('submit',function(e){
+          e.preventDefault();
+          var email=document.getElementById('newsletter-email').value.trim();
+          var ok=document.getElementById('newsletter-privacidad').checked;
+          if(!email||!ok) return;
+          var nombre=document.getElementById('nombre');
+          var emailC=document.getElementById('email');
+          var asunto=document.getElementById('asunto');
+          var msg=document.getElementById('mensaje');
+          var aceptoC=document.getElementById('acepto_privacidad');
+          if(emailC){emailC.value=email;}
+          if(nombre && !nombre.value){nombre.value='Suscripción Newsletter';}
+          if(asunto){
+            var hasNL=false;
+            for(var i=0;i<asunto.options.length;i++){if(asunto.options[i].value==='Newsletter'){hasNL=true;break;}}
+            asunto.value=hasNL?'Newsletter':'Otro';
+            asunto.dispatchEvent(new Event('change',{bubbles:true}));
           }
+          if(msg && !msg.value){msg.value='Suscripción a la newsletter de Aubit. Quiero recibir novedades, análisis de mercado y avisos de próximos eventos y formaciones.';}
+          if(aceptoC){aceptoC.checked=true;}
+          var contacto=document.getElementById('contacto');
+          if(contacto){contacto.scrollIntoView({behavior:'smooth',block:'start'});}
+          var done=document.getElementById('newsletterSuccess');
+          if(done){done.style.display='block';setTimeout(function(){done.style.display='none';},6000);}
+          setTimeout(function(){var btn=document.querySelector('#contactForm .form-submit');if(btn){btn.focus();}},700);
         });
-      });
-    })();
-  </script>
-<!-- mcp:blog:end -->
+      })();
+    </script>
+  </section>
+  <!-- mcp:blog:end -->
 
   <!-- ═══ CONFIANZA ═══ -->
   <!-- mcp:valores:start -->
