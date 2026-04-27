@@ -1708,8 +1708,8 @@
 
   <!-- ═══ HERO ═══ -->
   <!-- mcp:hero:start -->
-  <section id="inicio">
-    <div class="hero-bg" style="background-image:url('https://i.imgur.com/kv9Tc8R.jpeg');background-size:cover;background-position:center;background-repeat:no-repeat;"></div>
+  <section id="inicio" style="background-image:url('/img/equipo-kv9Tc8R.jpeg') !important;background-size:cover !important;background-position:center !important;background-repeat:no-repeat !important;">
+    <div class="hero-bg"></div>
     <div class="container">
       <div class="hero-grid">
         <div class="hero-content">
@@ -1728,6 +1728,8 @@
     </div>
 
     <style>
+      #inicio { background-image: url('/img/equipo-kv9Tc8R.jpeg') !important; background-size: cover !important; background-position: center !important; }
+      #inicio .hero-bg { background-image: none !important; }
       .aubit-float-wa,.aubit-float-faq{position:fixed;right:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:9998;box-shadow:0 8px 24px rgba(0,0,0,0.35);transition:transform .2s ease,box-shadow .2s ease;text-decoration:none;border:none;}
       .aubit-float-wa:hover,.aubit-float-faq:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,0.45);}
       .aubit-float-wa{bottom:24px;width:62px;height:62px;background:#25D366;color:#fff;font-size:32px;animation:waPulse 2.4s ease-in-out infinite;}
