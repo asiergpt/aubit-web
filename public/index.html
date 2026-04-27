@@ -2143,7 +2143,27 @@
   <!-- ═══ BLOG ═══ -->
   <!-- mcp:blog:start -->
   <section id="blog" style="display:none;" aria-hidden="true"></section>
-  <!-- mcp:blog:end -->
+  <script>
+    (function(){
+      // Cambiar "Blog" por "Newsletter" en el menú de navegación
+      document.querySelectorAll('nav a, header a, .nav a, .navbar a, .menu a').forEach(function(a){
+        if(a.textContent.trim() === 'Blog'){
+          a.textContent = 'Newsletter';
+          a.href = '#newsletter';
+        }
+      });
+      // También al cargar si el DOM no está listo
+      document.addEventListener('DOMContentLoaded', function(){
+        document.querySelectorAll('nav a, header a, .nav a, .navbar a, .menu a').forEach(function(a){
+          if(a.textContent.trim() === 'Blog'){
+            a.textContent = 'Newsletter';
+            a.href = '#newsletter';
+          }
+        });
+      });
+    })();
+  </script>
+<!-- mcp:blog:end -->
 
   <!-- ═══ CONFIANZA ═══ -->
   <!-- mcp:valores:start -->
