@@ -2715,6 +2715,7 @@
               <select id="asunto" name="asunto" required>
                 <option value="">Selecciona un asunto</option>
                 <option value="Inscripción a Evento">📅 INSCRIPCIÓN A EVENTO</option>
+                <option value="Newsletter">📰 Newsletter</option>
                 <option value="Compra de oro">Compra de oro</option>
                 <option value="Compra de plata">Compra de plata</option>
                 <option value="Compra de paladio">Compra de paladio</option>
@@ -2752,13 +2753,16 @@
         var msg=document.getElementById('mensaje');
         if(!sel||!banner) return;
         var TEMPLATE_PREFIX='Quiero inscribirme al evento:';
-        function isTemplate(v){return typeof v==='string' && v.indexOf(TEMPLATE_PREFIX)===0;}
+        var NL_PREFIX='Suscripción a la newsletter';
+        function isAutoTemplate(v){
+          return typeof v==='string' && (v.indexOf(TEMPLATE_PREFIX)===0 || v.indexOf(NL_PREFIX)===0);
+        }
         function sync(){
           if(sel.value==='Inscripción a Evento'){
             banner.style.display='block';
           } else {
             banner.style.display='none';
-            if(msg && isTemplate(msg.value)){msg.value='';}
+            if(msg && isAutoTemplate(msg.value)){msg.value='';}
           }
         }
         sel.addEventListener('change',sync);
