@@ -2226,18 +2226,20 @@
           mensaje:'Suscripción al newsletter desde aubit.es'
         })
       })
-      .then(function(r){return r.json();})
-      .then(function(d){
-        msg.style.display='block';
-        if(d.ok||d.success||d.id){
+      .then(function(r){
+        if(r.ok){
+          msg.style.display='block';
           msg.className='nl-msg ok';
           msg.innerHTML='<i class="fas fa-check-circle"></i> ¡Suscrito! Bienvenido a la comunidad AUBIT.';
           btn.innerHTML='Suscribirme <i class="fas fa-arrow-right"></i>';
           document.getElementById('nlEmail').value='';
         } else {
-          msg.className='nl-msg err';
-          msg.innerHTML='<i class="fas fa-times-circle"></i> Algo salió mal. Inténtalo de nuevo.';
-          btn.innerHTML='Suscribirme <i class="fas fa-arrow-right"></i>';
+          return r.json().then(function(d){
+            msg.style.display='block';
+            msg.className='nl-msg err';
+            msg.innerHTML='<i class="fas fa-times-circle"></i> Algo salió mal. Inténtalo de nuevo.';
+            btn.innerHTML='Suscribirme <i class="fas fa-arrow-right"></i>';
+          });
         }
       })
       .catch(function(){
