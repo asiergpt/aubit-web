@@ -2473,61 +2473,17 @@
     </div>
     <script>
     (function(){
-      function patchAll(){
-        // 1. Renombrar Blog → Newsletter en el menú
+      function hideNewsletter(){
         document.querySelectorAll('a[href="#blog"], a[href$="#blog"]').forEach(function(a){
-          if(/blog/i.test(a.textContent)){
-            a.textContent = a.textContent.replace(/blog/gi, 'Newsletter');
+          if(/newsletter|blog/i.test(a.textContent)){
+            a.style.display='none';
           }
         });
-
-        // 2. Parchear el formulario newsletter original
-        var form = document.getElementById('nlForm') || document.querySelector('form.nl-form') || document.querySelector('.nl-wrapper form');
-        if(form && !form._patched){
-          form._patched = true;
-          form.addEventListener('submit', function(e){
-            e.preventDefault();
-            e.stopImmediatePropagation();
-            var emailEl = form.querySelector('input[type="email"]') || document.getElementById('nlEmail');
-            var msgEl = document.getElementById('nlMsg');
-            var btnEl = document.getElementById('nlBtnText') || form.querySelector('button[type="submit"]');
-            var email = emailEl ? emailEl.value.trim() : '';
-            if(!email) return;
-            if(btnEl) btnEl.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-            fetch('https://mcp.aubit.es/contacto',{
-              method:'POST',
-              headers:{'Content-Type':'application/json'},
-              body:JSON.stringify({
-                nombre:'Suscriptor Newsletter',
-                email:email,
-                asunto:'Newsletter',
-                mensaje:'Suscripción al newsletter desde aubit.es'
-              })
-            })
-            .then(function(r){return r.json();})
-            .then(function(d){
-              if(msgEl) msgEl.style.display='block';
-              if(d.ok||d.success||d.id){
-                if(msgEl){msgEl.className='nl-msg ok';msgEl.textContent='✓ ¡Suscrito! Bienvenido a la comunidad Aubit.';}
-                if(emailEl) emailEl.value='';
-                if(btnEl) btnEl.textContent='¡Suscrito!';
-              } else {
-                if(msgEl){msgEl.className='nl-msg err';msgEl.textContent='⚠ Error. Inténtalo de nuevo.';}
-                if(btnEl) btnEl.textContent='Suscribirme →';
-              }
-            })
-            .catch(function(){
-              if(msgEl){msgEl.style.display='block';msgEl.textContent='⚠ Error de conexión. Inténtalo de nuevo.';}
-              if(btnEl) btnEl.textContent='Suscribirme →';
-            });
-          }, true);
-        }
       }
-
       if(document.readyState==='loading'){
-        document.addEventListener('DOMContentLoaded', function(){ patchAll(); setTimeout(patchAll,800); });
+        document.addEventListener('DOMContentLoaded', function(){ hideNewsletter(); setTimeout(hideNewsletter,500); });
       } else {
-        patchAll(); setTimeout(patchAll,800);
+        hideNewsletter(); setTimeout(hideNewsletter,500);
       }
     })();
     </script>
