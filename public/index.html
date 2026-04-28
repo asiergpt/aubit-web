@@ -2630,32 +2630,8 @@
         <i class="fas fa-shield-halved" style="color:#c9a84c;"></i> &nbsp;Sin compromiso · Respuesta en menos de 24 h · WhatsApp en menos de 2 h
       </p>
     </div>
-    <script>
-      (function(){
-        function renameBlogToNewsletter(){
-          var links=document.querySelectorAll('a[href="#blog"], a[href$="#blog"]');
-          links.forEach(function(a){
-            a.childNodes.forEach(function(n){
-              if(n.nodeType===3 && /blog/i.test(n.nodeValue)){
-                n.nodeValue=n.nodeValue.replace(/blog/gi,'Newsletter');
-              }
-            });
-            if(/blog/i.test(a.textContent)){
-              a.textContent=a.textContent.replace(/blog/gi,'Newsletter');
-            }
-          });
-        }
-        if(document.readyState==='loading'){
-          document.addEventListener('DOMContentLoaded',renameBlogToNewsletter);
-        }else{
-          renameBlogToNewsletter();
-        }
-        setTimeout(renameBlogToNewsletter,500);
-        setTimeout(renameBlogToNewsletter,1500);
-      })();
-    </script>
   </section>
-  <!-- mcp:cta:end -->
+<!-- mcp:cta:end -->
 
   <!-- ═══ CONTACTO ═══ -->
   <!-- mcp:contacto:start -->
