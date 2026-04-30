@@ -2015,6 +2015,11 @@
   <!-- mcp:eventos:start -->
   <section id="hoy" style="padding:0;overflow:hidden;">
 
+    <style>
+      #hoy-bg-img { opacity: 0.45; }
+      @media (max-width: 768px) { #hoy-bg-img { display: none !important; } }
+    </style>
+
     <div style="
       position:relative;
       width:100%;
@@ -2025,8 +2030,8 @@
       background:#0a0a0a;
       overflow:hidden;
     ">
-      <!-- Imagen de fondo -->
-      <div style="position:absolute;inset:0;background-image:url('/img/dennis-torrecilla-13KmJdc.jpeg');background-size:cover;background-position:center top;opacity:0.45;pointer-events:none;"></div>
+      <!-- Imagen de fondo solo desktop -->
+      <div id="hoy-bg-img" style="position:absolute;inset:0;background-image:url('/img/dennis-torrecilla-13KmJdc.jpeg');background-size:cover;background-position:center top;pointer-events:none;"></div>
 
       <!-- Overlay degradado -->
       <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,0.5) 0%,rgba(10,10,10,0.15) 50%,rgba(10,10,10,0.78) 100%);pointer-events:none;"></div>
