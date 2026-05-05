@@ -1743,10 +1743,10 @@
     <style>
       #inicio { background-image: url('/img/equipo-kv9Tc8R.jpeg') !important; background-size: cover !important; background-position: center 30% !important; }
       #inicio .hero-bg { display: none !important; }
-      .aubit-float-wa,.aubit-float-faq{position:fixed;right:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:9998;box-shadow:0 8px 24px rgba(0,0,0,0.35);transition:transform .2s ease,box-shadow .2s ease;text-decoration:none;border:none;}
+      .aubit-float-wa,.aubit-float-faq{position:fixed;right:24px;border-radius:50% !important;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:9998;box-shadow:0 8px 24px rgba(0,0,0,0.35);transition:transform .2s ease,box-shadow .2s ease;text-decoration:none;border:none;overflow:hidden;}
       .aubit-float-wa:hover,.aubit-float-faq:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,0.45);}
-      .aubit-float-wa{bottom:24px;width:62px;height:62px;background:#25D366;color:#fff;font-size:32px;animation:waPulse 2.4s ease-in-out infinite;}
-      .aubit-float-wa i{color:#fff;}
+      .aubit-float-wa{bottom:24px;width:62px !important;height:62px !important;min-width:62px !important;min-height:62px !important;background:#25D366 !important;color:#fff;font-size:32px;animation:waPulse 2.4s ease-in-out infinite;border-radius:50% !important;overflow:hidden !important;}
+      .aubit-float-wa i{color:#fff;pointer-events:none;}
       @keyframes waPulse{0%,100%{box-shadow:0 8px 24px rgba(37,211,102,0.4);}50%{box-shadow:0 8px 24px rgba(37,211,102,0.85),0 0 0 12px rgba(37,211,102,0);}}
       .aubit-float-faq{bottom:100px;width:56px;height:56px;background:#c9a84c;color:#0a0a0a;font-size:24px;font-weight:700;border:2px solid #0a0a0a;}
       .aubit-float-faq i{color:#0a0a0a;}
@@ -1766,7 +1766,11 @@
       .aubit-faq-q.open + .aubit-faq-a{max-height:400px;padding:4px 18px 14px 18px;}
       .aubit-faq-foot{padding:12px 18px;background:#0a0a0a;border-top:1px solid rgba(201,168,76,0.2);font-size:12px;color:#888;text-align:center;}
       .aubit-faq-foot a{color:#25D366;font-weight:600;text-decoration:none;}
-      @media (max-width:480px){.aubit-faq-panel{right:12px;bottom:155px;width:calc(100vw - 24px);} .aubit-float-wa,.aubit-float-faq{right:16px;}}
+      @media (max-width:480px){
+        .aubit-faq-panel{right:12px;bottom:155px;width:calc(100vw - 24px);}
+        .aubit-float-wa{right:16px !important;bottom:20px !important;width:60px !important;height:60px !important;min-width:60px !important;min-height:60px !important;border-radius:50% !important;overflow:hidden !important;}
+        .aubit-float-faq{right:16px !important;border-radius:50% !important;}
+      }
     </style>
 
     <a class="aubit-float-wa" href="https://wa.me/34646014798?text=Hola%2C%20vengo%20de%20aubit.es%20y%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n..." target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
